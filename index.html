@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animon Story Character Creator</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --accent-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            --warning-gradient: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
+            
+            --primary-color: #4facfe;
+            --secondary-color: #667eea;
+            --accent-color: #fa709a;
+            --success-color: #11998e;
+            --warning-color: #fc4a1a;
+            --dark-color: #2c3e50;
+            
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --text-light: #bdc3c7;
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fb;
+            --bg-tertiary: #ecf0f1;
+            
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --border-radius-sm: 8px;
+            
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+            --shadow-md: 0 8px 25px rgba(0,0,0,0.1);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.15);
+            --shadow-xl: 0 25px 50px rgba(0,0,0,0.25);
+            
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary-gradient);
+            min-height: 100vh;
+            padding: 20px;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-primary);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--bg-primary);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .header {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="white" opacity="0.1"/><circle cx="80" cy="80" r="3" fill="white" opacity="0.1"/><circle cx="40" cy="70" r="1" fill="white" opacity="0.1"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-20px) translateX(10px); }
+            100% { transform: translateY(0px) translateX(0px); }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--bg-secondary);
+            border-bottom: none;
+            padding: 0 40px;
+            gap: 8px;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 20px 30px;
+            text-align: center;
+            background: transparent;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            color: var(--text-secondary);
+            position: relative;
+            margin-top: 8px;
+        }
+
+        .tab.active {
+            background: var(--bg-primary);
+            color: var(--primary-color);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tab:hover:not(.active) {
+            background: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+            color: var(--text-primary);
+        }
+
+        .content {
+            padding: 40px;
+            min-height: 600px;
+            background: var(--bg-primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .form-group {
+            margin-bottom: 32px;
+        }
+
+        .form-group > label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 172, 254, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input:hover, .form-group select:hover, .form-group textarea:hover {
+            border-color: var(--primary-color);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .stat-item {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            border: 2px solid var(--bg-tertiary);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary-gradient);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .stat-item:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-item h4 {
+            color: var(--primary-color);
+            margin-bottom: 12px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+
+        .stat-slider {
+            width: 100%;
+            margin: 16px 0;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 8px;
+            border-radius: 4px;
+            background: var(--bg-tertiary);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .stat-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--secondary-gradient);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .stat-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--secondary-gradient);
+            cursor: pointer;
+            border: 3px solid white;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .points-remaining {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 24px;
+            text-align: center;
+            font-weight: 600;
+            color: var(--primary-color);
+            border: 2px solid rgba(79, 172, 254, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .points-remaining::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .signature-attack {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            padding: 32px;
+            border-radius: var(--border-radius);
+            border-left: 6px solid var(--warning-color);
+            margin-top: 32px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .signature-attack::before {
+            content: '⚡';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            opacity: 0.3;
+        }
+
+        .signature-attack h3 {
+            color: var(--warning-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .quality-item {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, #e8f5e8 100%);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 16px;
+            border-left: 6px solid var(--success-color);
+            transition: var(--transition);
+        }
+
+        .quality-item:hover {
+            transform: translateX(4px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .character-summary {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #f0f8ff 100%);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin-top: 32px;
+            border: 2px solid var(--bg-tertiary);
+        }
+
+        .summary-section {
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid rgba(79, 172, 254, 0.1);
+            position: relative;
+        }
+
+        .summary-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .summary-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            font-weight: 700;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .summary-section p {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .summary-section strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--secondary-gradient);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background: var(--dark-gradient);
+            color: white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .description {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 24px;
+            border-radius: var(--border-radius);
+            margin-bottom: 32px;
+            font-style: italic;
+            border-left: 6px solid var(--primary-color);
+            position: relative;
+        }
+
+        .description::before {
+            content: '💡';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            opacity: 0.6;
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border: 2px solid var(--warning-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .warning::before {
+            content: '⚠️';
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            font-size: 18px;
+        }
+
+        .error {
+            color: var(--warning-color);
+            font-size: 14px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        .evolution-stages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .evolution-stage {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            border: 2px solid var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            padding: 32px;
+            position: relative;
+            transition: var(--transition);
+            overflow: hidden;
+        }
+
+        .evolution-stage::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--secondary-gradient);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .evolution-stage:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .evolution-stage:hover::before {
+            transform: scaleX(1);
+        }
+
+        .evolution-stage.current {
+            border-color: var(--primary-color);
+            background: linear-gradient(135deg, #e7f3ff 0%, #f0f8ff 100%);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .evolution-stage.current::before {
+            transform: scaleX(1);
+        }
+
+        .evolution-stage h4 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 700;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .export-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎮 Animon Story Character Creator</h1>
+            <p>Create your Kid and Animon characters for the Animon Story TTRPG</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('kid')">Kid Character</button>
+            <button class="tab" onclick="showTab('animon')">Animon Partner</button>
+            <button class="tab" onclick="showTab('summary')">Character Summary</button>
+        </div>
+
+        <div class="content">
+            <!-- Kid Character Tab -->
+            <div id="kid" class="tab-content active">
+                <h2>Create Your Kid Character</h2>
+                <div class="description">
+                    The main characters of Animon Story are the Kids and their partner Animon. Each Kid has unique traits, talents, and a special relationship with their Animon companion.
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="kid-name">Kid Name:</label>
+                        <input type="text" id="kid-name" placeholder="Enter your Kid's name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kid-type">Kid Type:</label>
+                        <select id="kid-type">
+                            <option value="">Choose a Kid Type</option>
+                            <option value="bookworm">Bookworm</option>
+                            <option value="computer-wizard">Computer Wizard</option>
+                            <option value="delinquent">Delinquent</option>
+                            <option value="free-spirit">Free Spirit</option>
+                            <option value="gamer">Gamer</option>
+                            <option value="gentle-heart">Gentle Heart</option>
+                            <option value="grown-up">Grown-Up</option>
+                            <option value="jock">Jock</option>
+                            <option value="little-kid">Little Kid</option>
+                            <option value="loner">Loner</option>
+                            <option value="rising-star">Rising Star</option>
+                            <option value="wild-child">Wild Child</option>
+                            <option value="young-aristocrat">Young Aristocrat</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Kid Traits (Distribute scores of 4, 3, and 2):</label>
+                    <div class="points-remaining" id="trait-points">Points to assign: 4, 3, 2</div>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>Body</h4>
+                            <p>Physical power and endurance</p>
+                            <select id="trait-body" onchange="updateTraitPoints()">
+                                <option value="">Choose</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Mind</h4>
+                            <p>Intelligence and reasoning</p>
+                            <select id="trait-mind" onchange="updateTraitPoints()">
+                                <option value="">Choose</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Spirit</h4>
+                            <p>Determination and charisma</p>
+                            <select id="trait-spirit" onchange="updateTraitPoints()">
+                                <option value="">Choose</option>
+                                <option value="4">4</option>
+                                <option value="3">3</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="talent1">Talent 1 (Rank 1):</label>
+                        <input type="text" id="talent1" placeholder="e.g., Biology, Climbing, Persuasion">
+                    </div>
+                    <div class="form-group">
+                        <label for="talent2">Talent 2 (Rank 1):</label>
+                        <input type="text" id="talent2" placeholder="e.g., Drawing, Small Talk, Quiet Confidence">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="kid-flaw">Flaw:</label>
+                        <input type="text" id="kid-flaw" placeholder="e.g., Allergies, Phobias, Personality quirks">
+                    </div>
+                    <div class="form-group">
+                        <label for="kid-desire">Desire:</label>
+                        <input type="text" id="kid-desire" placeholder="Something they want more than anything">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="special-item">Special Item:</label>
+                    <input type="text" id="special-item" placeholder="Something they're rarely seen without">
+                </div>
+
+                <div class="form-group">
+                    <label for="kid-stuff">Stuff (Other items):</label>
+                    <textarea id="kid-stuff" rows="3" placeholder="List other items the Kid carries"></textarea>
+                </div>
+            </div>
+
+            <!-- Animon Character Tab -->
+            <div id="animon" class="tab-content">
+                <h2>Create Your Animon Partner</h2>
+                <div class="description">
+                    Animon are sentient, intelligent monsters that can speak human languages. When they build a strong bond with a Kid partner, they grow in strength and evolve into powerful new forms.
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="animon-name">Animon Name:</label>
+                        <input type="text" id="animon-name" placeholder="Enter your Animon's name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="animon-classification">Classification:</label>
+                        <select id="animon-classification">
+                            <option value="">Choose Classification</option>
+                            <option value="beast">Beast - Mammalian features, favours grasslands/forests</option>
+                            <option value="bird">Bird - Avian features, favours aerial environments</option>
+                            <option value="bug">Bug - Insectoid features, favours underground</option>
+                            <option value="dragon">Dragon - Draconic features, favours mountains</option>
+                            <option value="fish">Fish - Aquatic features, favours underwater</option>
+                            <option value="flora">Flora - Plant-like features, favours rich soil</option>
+                            <option value="ghost">Ghost - Ethereal features, favours dark places</option>
+                            <option value="humanoid">Humanoid - Human-like features, varies</option>
+                            <option value="machine">Machine - Mechanical features, favours urban</option>
+                            <option value="mineral">Mineral - Rocky/crystalline, favours underground</option>
+                            <option value="slime">Slime - Gelatinous features, varies</option>
+                            <option value="unknown">Unknown - Unusual features, varies</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="animon-element">Element:</label>
+                        <select id="animon-element">
+                            <option value="">Choose Element</option>
+                            <option value="fire">Fire</option>
+                            <option value="water">Water</option>
+                            <option value="nature">Nature</option>
+                            <option value="electric">Electric</option>
+                            <option value="earth">Earth</option>
+                            <option value="ice">Ice</option>
+                            <option value="wind">Wind</option>
+                            <option value="light">Light</option>
+                            <option value="dark">Dark</option>
+                            <option value="mirage">Mirage</option>
+                            <option value="neutral">Neutral</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="animon-nature">Nature:</label>
+                        <select id="animon-nature">
+                            <option value="">Choose Nature</option>
+                            <option value="brave">Brave (Courageous but Reckless)</option>
+                            <option value="calm">Calm (Peaceful but Apathetic)</option>
+                            <option value="cheerful">Cheerful (Upbeat but Naive)</option>
+                            <option value="clever">Clever (Intelligent but Scheming)</option>
+                            <option value="cool">Cool (Collected but Aloof)</option>
+                            <option value="curious">Curious (Inquisitive but Nosy)</option>
+                            <option value="fierce">Fierce (Determined but Aggressive)</option>
+                            <option value="gentle">Gentle (Kind but Weak-willed)</option>
+                            <option value="lively">Lively (Energetic but Restless)</option>
+                            <option value="obedient">Obedient (Attentive but Dependant)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="evolution-stages">
+                    <!-- Basic Stage -->
+                    <div class="evolution-stage current">
+                        <h4>BASIC Stage</h4>
+                        <div class="form-group">
+                            <label>Stats (Distribute 8 points, max 4 per stat):</label>
+                            <div class="points-remaining" id="basic-points">Points remaining: 8</div>
+
+                            <div class="stat-item">
+                                <label>Power: <span id="basic-power-value">1</span></label>
+                                <input type="range" id="basic-power" min="1" max="4" value="1" class="stat-slider" onchange="updateBasicStats()">
+                                <small>Strength and attack power</small>
+                            </div>
+
+                            <div class="stat-item">
+                                <label>Heart: <span id="basic-heart-value">1</span></label>
+                                <input type="range" id="basic-heart" min="1" max="4" value="1" class="stat-slider" onchange="updateBasicStats()">
+                                <small>Vitality and endurance</small>
+                            </div>
+
+                            <div class="stat-item">
+                                <label>Brains: <span id="basic-brains-value">1</span></label>
+                                <input type="range" id="basic-brains" min="1" max="4" value="1" class="stat-slider" onchange="updateBasicStats()">
+                                <small>Intelligence and perception</small>
+                            </div>
+
+                            <div class="stat-item">
+                                <label>Agility: <span id="basic-agility-value">1</span></label>
+                                <input type="range" id="basic-agility" min="1" max="4" value="1" class="stat-slider" onchange="updateBasicStats()">
+                                <small>Speed and reflexes</small>
+                            </div>
+                        </div>
+
+                        <div class="stat-grid" id="basic-derived">
+                            <div class="stat-item">
+                                <h4>HP</h4>
+                                <span id="basic-hp">8</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Damage</h4>
+                                <span id="basic-damage">2</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Dodge</h4>
+                                <span id="basic-dodge">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Initiative</h4>
+                                <span id="basic-initiative">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fledgling Stage -->
+                    <div class="evolution-stage">
+                        <h4>FLEDGLING Stage</h4>
+                        <div class="form-group">
+                            <label>Stats (Distribute 4 points, max 3 per stat):</label>
+                            <div class="points-remaining" id="fledgling-points">Points remaining: 4</div>
+
+                            <div class="stat-item">
+                                <label>Power: <span id="fledgling-power-value">1</span></label>
+                                <input type="range" id="fledgling-power" min="1" max="3" value="1" class="stat-slider" onchange="updateFledglingStats()">
+                            </div>
+
+                            <div class="stat-item">
+                                <label>Heart: <span id="fledgling-heart-value">1</span></label>
+                                <input type="range" id="fledgling-heart" min="1" max="3" value="1" class="stat-slider" onchange="updateFledglingStats()">
+                            </div>
+
+                            <div class="stat-item">
+                                <label>Brains: <span id="fledgling-brains-value">1</span></label>
+                                <input type="range" id="fledgling-brains" min="1" max="3" value="1" class="stat-slider" onchange="updateFledglingStats()">
+                            </div>
+
+                            <div class="stat-item">
+                                <label>Agility: <span id="fledgling-agility-value">1</span></label>
+                                <input type="range" id="fledgling-agility" min="1" max="3" value="1" class="stat-slider" onchange="updateFledglingStats()">
+                            </div>
+                        </div>
+
+                        <div class="stat-grid" id="fledgling-derived">
+                            <div class="stat-item">
+                                <h4>HP</h4>
+                                <span id="fledgling-hp">3</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Damage</h4>
+                                <span id="fledgling-damage">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Dodge</h4>
+                                <span id="fledgling-dodge">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Initiative</h4>
+                                <span id="fledgling-initiative">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Super Stage -->
+                    <div class="evolution-stage">
+                        <h4>SUPER Stage</h4>
+                        <div class="form-group">
+                            <div class="points-remaining">Bond Level 3 Required</div>
+                            <label>Stats (Distribute 10 points, max 5 per stat):</label>
+                            <div class="points-remaining" id="super-points">Points remaining: 10</div>
+                            
+                            <div class="stat-item">
+                                <label>Power: <span id="super-power-value">1</span></label>
+                                <input type="range" id="super-power" min="1" max="5" value="1" class="stat-slider" onchange="updateSuperStats()">
+                                <small>Strength and attack power</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Heart: <span id="super-heart-value">1</span></label>
+                                <input type="range" id="super-heart" min="1" max="5" value="1" class="stat-slider" onchange="updateSuperStats()">
+                                <small>Vitality and endurance</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Brains: <span id="super-brains-value">1</span></label>
+                                <input type="range" id="super-brains" min="1" max="5" value="1" class="stat-slider" onchange="updateSuperStats()">
+                                <small>Intelligence and perception</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Agility: <span id="super-agility-value">1</span></label>
+                                <input type="range" id="super-agility" min="1" max="5" value="1" class="stat-slider" onchange="updateSuperStats()">
+                                <small>Speed and reflexes</small>
+                            </div>
+                        </div>
+
+                        <div class="stat-grid" id="super-derived">
+                            <div class="stat-item">
+                                <h4>HP</h4>
+                                <span id="super-hp">12</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Damage</h4>
+                                <span id="super-damage">3</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Dodge</h4>
+                                <span id="super-dodge">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Initiative</h4>
+                                <span id="super-initiative">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ultra Stage -->
+                    <div class="evolution-stage">
+                        <h4>ULTRA Stage</h4>
+                        <div class="form-group">
+                            <div class="points-remaining">Bond Level 6 Required</div>
+                            <label>Stats (Distribute 12 points, max 6 per stat):</label>
+                            <div class="points-remaining" id="ultra-points">Points remaining: 12</div>
+                            
+                            <div class="stat-item">
+                                <label>Power: <span id="ultra-power-value">1</span></label>
+                                <input type="range" id="ultra-power" min="1" max="6" value="1" class="stat-slider" onchange="updateUltraStats()">
+                                <small>Strength and attack power</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Heart: <span id="ultra-heart-value">1</span></label>
+                                <input type="range" id="ultra-heart" min="1" max="6" value="1" class="stat-slider" onchange="updateUltraStats()">
+                                <small>Vitality and endurance</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Brains: <span id="ultra-brains-value">1</span></label>
+                                <input type="range" id="ultra-brains" min="1" max="6" value="1" class="stat-slider" onchange="updateUltraStats()">
+                                <small>Intelligence and perception</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Agility: <span id="ultra-agility-value">1</span></label>
+                                <input type="range" id="ultra-agility" min="1" max="6" value="1" class="stat-slider" onchange="updateUltraStats()">
+                                <small>Speed and reflexes</small>
+                            </div>
+                        </div>
+
+                        <div class="stat-grid" id="ultra-derived">
+                            <div class="stat-item">
+                                <h4>HP</h4>
+                                <span id="ultra-hp">17</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Damage</h4>
+                                <span id="ultra-damage">4</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Dodge</h4>
+                                <span id="ultra-dodge">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Initiative</h4>
+                                <span id="ultra-initiative">1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Giga Stage -->
+                    <div class="evolution-stage">
+                        <h4>GIGA Stage</h4>
+                        <div class="form-group">
+                            <div class="points-remaining">Bond Level 9 Required</div>
+                            <label>Stats (Distribute 14 points, max 7 per stat):</label>
+                            <div class="points-remaining" id="giga-points">Points remaining: 14</div>
+                            
+                            <div class="stat-item">
+                                <label>Power: <span id="giga-power-value">1</span></label>
+                                <input type="range" id="giga-power" min="1" max="7" value="1" class="stat-slider" onchange="updateGigaStats()">
+                                <small>Strength and attack power</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Heart: <span id="giga-heart-value">1</span></label>
+                                <input type="range" id="giga-heart" min="1" max="7" value="1" class="stat-slider" onchange="updateGigaStats()">
+                                <small>Vitality and endurance</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Brains: <span id="giga-brains-value">1</span></label>
+                                <input type="range" id="giga-brains" min="1" max="7" value="1" class="stat-slider" onchange="updateGigaStats()">
+                                <small>Intelligence and perception</small>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <label>Agility: <span id="giga-agility-value">1</span></label>
+                                <input type="range" id="giga-agility" min="1" max="7" value="1" class="stat-slider" onchange="updateGigaStats()">
+                                <small>Speed and reflexes</small>
+                            </div>
+                        </div>
+
+                        <div class="stat-grid" id="giga-derived">
+                            <div class="stat-item">
+                                <h4>HP</h4>
+                                <span id="giga-hp">22</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Damage</h4>
+                                <span id="giga-damage">5</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Dodge</h4>
+                                <span id="giga-dodge">1</span>
+                            </div>
+                            <div class="stat-item">
+                                <h4>Initiative</h4>
+                                <span id="giga-initiative">1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="signature-attack">
+                    <h3>Signature Attack (Basic Stage)</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="signature-name">Attack Name:</label>
+                            <input type="text" id="signature-name" placeholder="e.g., Lightning Breath, Solar Beam">
+                        </div>
+                        <div class="form-group">
+                            <label for="signature-element">Attack Element:</label>
+                            <select id="signature-element">
+                                <option value="">Choose Element</option>
+                                <option value="fire">Fire</option>
+                                <option value="water">Water</option>
+                                <option value="nature">Nature</option>
+                                <option value="electric">Electric</option>
+                                <option value="earth">Earth</option>
+                                <option value="ice">Ice</option>
+                                <option value="wind">Wind</option>
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                                <option value="mirage">Mirage</option>
+                                <option value="neutral">Neutral</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="signature-effect">Effect:</label>
+                        <select id="signature-effect">
+                            <option value="">Choose Effect</option>
+                            <option value="accurate">Accurate - Attack made with Boost</option>
+                            <option value="area">Area - Hits multiple targets</option>
+                            <option value="brutal">Brutal - +1 Damage</option>
+                            <option value="defensive">Defensive - +1 Dodge until next turn</option>
+                            <option value="draining">Draining - Restores 1 HP when hits</option>
+                            <option value="empowering">Empowering - +1 to all Stats until next turn</option>
+                            <option value="hindering">Hindering - Target gets -1 to all Stats until next turn</option>
+                            <option value="piercing">Piercing - Ignores 1 point of Dodge</option>
+                            <option value="reliable">Reliable - Minimum 1 success guaranteed</option>
+                            <option value="stunning">Stunning - Target loses next action if hit</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Uses per Combat: <span id="signature-uses">1</span> (Equal to Brains score)</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="animon-quality">Quality (Rank 1):</label>
+                    <input type="text" id="animon-quality" placeholder="e.g., Enhanced Senses, Thick Hide, Natural Camouflage">
+                </div>
+            </div>
+
+            <!-- Summary Tab -->
+            <div id="summary" class="tab-content">
+                <h2>Character Summary</h2>
+                <div class="description">
+                    Review your completed characters. Use the export buttons to save or print your character sheets.
+                </div>
+
+                <div class="character-summary" id="character-summary">
+                    <!-- Summary will be generated here -->
+                </div>
+
+                <div class="export-buttons">
+                    <button class="btn btn-primary" onclick="exportToPDF()">📄 Export to PDF</button>
+                    <button class="btn btn-secondary" onclick="exportToJSON()">💾 Save as JSON</button>
+                    <button class="btn btn-secondary" onclick="loadFromJSON()">📁 Load from JSON</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Character data storage
+        let characterData = {
+            kid: {
+                name: '',
+                type: '',
+                traits: { body: '', mind: '', spirit: '' },
+                talents: ['', ''],
+                flaw: '',
+                desire: '',
+                specialItem: '',
+                stuff: '',
+                stamina: 4,
+                bondPoints: 3
+            },
+            animon: {
+                name: '',
+                classification: '',
+                element: '',
+                nature: '',
+                basic: {
+                    stats: { power: 1, heart: 1, brains: 1, agility: 1 },
+                    hp: 8,
+                    damage: 2,
+                    dodge: 1,
+                    initiative: 1
+                },
+                fledgling: {
+                    stats: { power: 1, heart: 1, brains: 1, agility: 1 },
+                    hp: 3,
+                    damage: 1,
+                    dodge: 1,
+                    initiative: 1
+                },
+                signatureAttack: {
+                    name: '',
+                    element: '',
+                    effect: '',
+                    uses: 1
+                },
+                quality: ''
+            }
+        };
+
+        // Tab switching functionality
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+
+            // Update summary if summary tab is selected
+            if (tabName === 'summary') {
+                updateSummary();
+            }
+        }
+
+        // Trait points management
+        function updateTraitPoints() {
+            const body = parseInt(document.getElementById('trait-body').value) || 0;
+            const mind = parseInt(document.getElementById('trait-mind').value) || 0;
+            const spirit = parseInt(document.getElementById('trait-spirit').value) || 0;
+
+            const assigned = [body, mind, spirit].filter(v => v > 0);
+            const required = [4, 3, 2];
+
+            // Check for duplicates
+            const hasDuplicates = assigned.length !== new Set(assigned).size;
+            const isValid = assigned.length === 3 &&
+                           assigned.sort().join(',') === required.sort().join(',') &&
+                           !hasDuplicates;
+
+            const pointsDisplay = document.getElementById('trait-points');
+            if (isValid) {
+                pointsDisplay.textContent = 'All traits assigned correctly!';
+                pointsDisplay.style.background = '#d4edda';
+                pointsDisplay.style.color = '#155724';
+            } else {
+                pointsDisplay.textContent = 'Points to assign: 4, 3, 2 (each used once)';
+                pointsDisplay.style.background = '#e7f3ff';
+                pointsDisplay.style.color = '#0066cc';
+            }
+
+            // Update character data
+            characterData.kid.traits = { body, mind, spirit };
+        }
+
+        // Basic stage stats management
+        function updateBasicStats() {
+            const power = parseInt(document.getElementById('basic-power').value);
+            const heart = parseInt(document.getElementById('basic-heart').value);
+            const brains = parseInt(document.getElementById('basic-brains').value);
+            const agility = parseInt(document.getElementById('basic-agility').value);
+
+            // Update display values
+            document.getElementById('basic-power-value').textContent = power;
+            document.getElementById('basic-heart-value').textContent = heart;
+            document.getElementById('basic-brains-value').textContent = brains;
+            document.getElementById('basic-agility-value').textContent = agility;
+
+            // Calculate points used (each stat starts at 1, so subtract 4)
+            const pointsUsed = (power + heart + brains + agility) - 4;
+            const pointsRemaining = 8 - pointsUsed;
+
+            const pointsDisplay = document.getElementById('basic-points');
+            pointsDisplay.textContent = `Points remaining: ${pointsRemaining}`;
+
+            if (pointsRemaining < 0) {
+                pointsDisplay.style.background = '#f8d7da';
+                pointsDisplay.style.color = '#721c24';
+            } else if (pointsRemaining === 0) {
+                pointsDisplay.style.background = '#d4edda';
+                pointsDisplay.style.color = '#155724';
+            } else {
+                pointsDisplay.style.background = '#e7f3ff';
+                pointsDisplay.style.color = '#0066cc';
+            }
+
+            // Calculate derived stats
+            const hp = 5 + (3 * heart);
+            const damage = 2 * power;
+            const dodge = agility;
+            const initiative = brains;
+
+            document.getElementById('basic-hp').textContent = hp;
+            document.getElementById('basic-damage').textContent = damage;
+            document.getElementById('basic-dodge').textContent = dodge;
+            document.getElementById('basic-initiative').textContent = initiative;
+
+            // Update signature attack uses
+            document.getElementById('signature-uses').textContent = brains;
+
+            // Update character data
+            characterData.animon.basic = {
+                stats: { power, heart, brains, agility },
+                hp, damage, dodge, initiative
+            };
+            characterData.animon.signatureAttack.uses = brains;
+        }
+
+        // Fledgling stage stats management
+        function updateFledglingStats() {
+            const power = parseInt(document.getElementById('fledgling-power').value);
+            const heart = parseInt(document.getElementById('fledgling-heart').value);
+            const brains = parseInt(document.getElementById('fledgling-brains').value);
+            const agility = parseInt(document.getElementById('fledgling-agility').value);
+
+            // Update display values
+            document.getElementById('fledgling-power-value').textContent = power;
+            document.getElementById('fledgling-heart-value').textContent = heart;
+            document.getElementById('fledgling-brains-value').textContent = brains;
+            document.getElementById('fledgling-agility-value').textContent = agility;
+
+            // Calculate points used (each stat starts at 1, so subtract 4)
+            const pointsUsed = (power + heart + brains + agility) - 4;
+            const pointsRemaining = 4 - pointsUsed;
+
+            const pointsDisplay = document.getElementById('fledgling-points');
+            pointsDisplay.textContent = `Points remaining: ${pointsRemaining}`;
+
+            if (pointsRemaining < 0) {
+                pointsDisplay.style.background = '#f8d7da';
+                pointsDisplay.style.color = '#721c24';
+            } else if (pointsRemaining === 0) {
+                pointsDisplay.style.background = '#d4edda';
+                pointsDisplay.style.color = '#155724';
+            } else {
+                pointsDisplay.style.background = '#e7f3ff';
+                pointsDisplay.style.color = '#0066cc';
+            }
+
+            // Calculate derived stats
+            const hp = 3 * heart;
+            const damage = power;
+            const dodge = agility;
+            const initiative = brains;
+
+            document.getElementById('fledgling-hp').textContent = hp;
+            document.getElementById('fledgling-damage').textContent = damage;
+            document.getElementById('fledgling-dodge').textContent = dodge;
+            document.getElementById('fledgling-initiative').textContent = initiative;
+
+            // Update character data
+            characterData.animon.fledgling = {
+                stats: { power, heart, brains, agility },
+                hp, damage, dodge, initiative
+            };
+        }
+
+        // Update summary
+        function updateSummary() {
+            // Collect all form data
+            collectFormData();
+
+            const summaryDiv = document.getElementById('character-summary');
+
+            summaryDiv.innerHTML = `
+                <div class="summary-section">
+                    <h3>🧒 Kid Character</h3>
+                    <p><strong>Name:</strong> ${characterData.kid.name || 'Not set'}</p>
+                    <p><strong>Type:</strong> ${characterData.kid.type || 'Not set'}</p>
+                    <p><strong>Traits:</strong> Body ${characterData.kid.traits.body || '?'}, Mind ${characterData.kid.traits.mind || '?'}, Spirit ${characterData.kid.traits.spirit || '?'}</p>
+                    <p><strong>Talents:</strong> ${characterData.kid.talents.filter(t => t).join(', ') || 'None set'}</p>
+                    <p><strong>Flaw:</strong> ${characterData.kid.flaw || 'Not set'}</p>
+                    <p><strong>Desire:</strong> ${characterData.kid.desire || 'Not set'}</p>
+                    <p><strong>Special Item:</strong> ${characterData.kid.specialItem || 'Not set'}</p>
+                    <p><strong>Stamina:</strong> ${characterData.kid.stamina}</p>
+                    <p><strong>Starting Bond Points:</strong> ${characterData.kid.bondPoints}</p>
+                </div>
+
+                <div class="summary-section">
+                    <h3>🐾 Animon Partner</h3>
+                    <p><strong>Name:</strong> ${characterData.animon.name || 'Not set'}</p>
+                    <p><strong>Classification:</strong> ${characterData.animon.classification || 'Not set'}</p>
+                    <p><strong>Element:</strong> ${characterData.animon.element || 'Not set'}</p>
+                    <p><strong>Nature:</strong> ${characterData.animon.nature || 'Not set'}</p>
+                    <p><strong>Quality:</strong> ${characterData.animon.quality || 'Not set'} (Rank 1)</p>
+                </div>
+
+                <div class="summary-section">
+                    <h3>⭐ Basic Stage Stats</h3>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>Power</h4>
+                            <p>${characterData.animon.basic.stats.power}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Heart</h4>
+                            <p>${characterData.animon.basic.stats.heart}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Brains</h4>
+                            <p>${characterData.animon.basic.stats.brains}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Agility</h4>
+                            <p>${characterData.animon.basic.stats.agility}</p>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>HP</h4>
+                            <p>${characterData.animon.basic.hp}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Damage</h4>
+                            <p>${characterData.animon.basic.damage}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Dodge</h4>
+                            <p>${characterData.animon.basic.dodge}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Initiative</h4>
+                            <p>${characterData.animon.basic.initiative}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>🌟 Fledgling Stage Stats</h3>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>Power</h4>
+                            <p>${characterData.animon.fledgling.stats.power}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Heart</h4>
+                            <p>${characterData.animon.fledgling.stats.heart}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Brains</h4>
+                            <p>${characterData.animon.fledgling.stats.brains}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Agility</h4>
+                            <p>${characterData.animon.fledgling.stats.agility}</p>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>HP</h4>
+                            <p>${characterData.animon.fledgling.hp}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Damage</h4>
+                            <p>${characterData.animon.fledgling.damage}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Dodge</h4>
+                            <p>${characterData.animon.fledgling.dodge}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Initiative</h4>
+                            <p>${characterData.animon.fledgling.initiative}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>⚡ Signature Attack</h3>
+                    <p><strong>Name:</strong> ${characterData.animon.signatureAttack.name || 'Not set'}</p>
+                    <p><strong>Element:</strong> ${characterData.animon.signatureAttack.element || 'Not set'}</p>
+                    <p><strong>Effect:</strong> ${characterData.animon.signatureAttack.effect || 'Not set'}</p>
+                    <p><strong>Uses per Combat:</strong> ${characterData.animon.signatureAttack.uses}</p>
+                    <p><strong>Rank:</strong> 1</p>
+                </div>
+            `;
+        }
+
+        // Collect form data
+        function collectFormData() {
+            // Kid data
+            characterData.kid.name = document.getElementById('kid-name').value;
+            characterData.kid.type = document.getElementById('kid-type').value;
+            characterData.kid.talents = [
+                document.getElementById('talent1').value,
+                document.getElementById('talent2').value
+            ];
+            characterData.kid.flaw = document.getElementById('kid-flaw').value;
+            characterData.kid.desire = document.getElementById('kid-desire').value;
+            characterData.kid.specialItem = document.getElementById('special-item').value;
+            characterData.kid.stuff = document.getElementById('kid-stuff').value;
+
+            // Animon data
+            characterData.animon.name = document.getElementById('animon-name').value;
+            characterData.animon.classification = document.getElementById('animon-classification').value;
+            characterData.animon.element = document.getElementById('animon-element').value;
+            characterData.animon.nature = document.getElementById('animon-nature').value;
+            characterData.animon.quality = document.getElementById('animon-quality').value;
+
+            // Signature attack
+            characterData.animon.signatureAttack.name = document.getElementById('signature-name').value;
+            characterData.animon.signatureAttack.element = document.getElementById('signature-element').value;
+            characterData.animon.signatureAttack.effect = document.getElementById('signature-effect').value;
+        }
+
+        // Export functions
+        function exportToPDF() {
+            collectFormData();
+            window.print();
+        }
+
+        function exportToJSON() {
+            collectFormData();
+            const dataStr = JSON.stringify(characterData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${characterData.kid.name || 'animon-character'}.json`;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function loadFromJSON() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const data = JSON.parse(e.target.result);
+                            loadCharacterData(data);
+                        } catch (error) {
+                            alert('Error loading file: Invalid JSON format');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            input.click();
+        }
+
+        function loadCharacterData(data) {
+            characterData = data;
+
+            // Load Kid data
+            document.getElementById('kid-name').value = data.kid.name || '';
+            document.getElementById('kid-type').value = data.kid.type || '';
+            document.getElementById('trait-body').value = data.kid.traits.body || '';
+            document.getElementById('trait-mind').value = data.kid.traits.mind || '';
+            document.getElementById('trait-spirit').value = data.kid.traits.spirit || '';
+            document.getElementById('talent1').value = data.kid.talents[0] || '';
+            document.getElementById('talent2').value = data.kid.talents[1] || '';
+            document.getElementById('kid-flaw').value = data.kid.flaw || '';
+            document.getElementById('kid-desire').value = data.kid.desire || '';
+            document.getElementById('special-item').value = data.kid.specialItem || '';
+            document.getElementById('kid-stuff').value = data.kid.stuff || '';
+
+            // Load Animon data
+            document.getElementById('animon-name').value = data.animon.name || '';
+            document.getElementById('animon-classification').value = data.animon.classification || '';
+            document.getElementById('animon-element').value = data.animon.element || '';
+            document.getElementById('animon-nature').value = data.animon.nature || '';
+            document.getElementById('animon-quality').value = data.animon.quality || '';
+
+            // Load Basic stage stats
+            document.getElementById('basic-power').value = data.animon.basic.stats.power;
+            document.getElementById('basic-heart').value = data.animon.basic.stats.heart;
+            document.getElementById('basic-brains').value = data.animon.basic.stats.brains;
+            document.getElementById('basic-agility').value = data.animon.basic.stats.agility;
+
+            // Load Fledgling stage stats
+            document.getElementById('fledgling-power').value = data.animon.fledgling.stats.power;
+            document.getElementById('fledgling-heart').value = data.animon.fledgling.stats.heart;
+            document.getElementById('fledgling-brains').value = data.animon.fledgling.stats.brains;
+            document.getElementById('fledgling-agility').value = data.animon.fledgling.stats.agility;
+
+            // Load Signature attack
+            document.getElementById('signature-name').value = data.animon.signatureAttack.name || '';
+            document.getElementById('signature-element').value = data.animon.signatureAttack.element || '';
+            document.getElementById('signature-effect').value = data.animon.signatureAttack.effect || '';
+
+            // Update all displays
+            updateTraitPoints();
+            updateBasicStats();
+            updateFledglingStats();
+
+            alert('Character data loaded successfully!');
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBasicStats();
+            updateFledglingStats();
+        });
+    </script>
+</body>
+</html>
