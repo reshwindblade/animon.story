@@ -577,8 +577,33 @@
         }
 
         @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: var(--border-radius);
+            }
+
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2.5em;
+            }
+
             .tabs {
                 flex-direction: column;
+                padding: 0 20px;
+                gap: 4px;
+            }
+
+            .tab {
+                margin: 0;
+                padding: 16px 20px;
+                border-radius: var(--border-radius-sm);
+            }
+
+            .content {
+                padding: 20px;
             }
 
             .form-row {
@@ -589,8 +614,73 @@
                 grid-template-columns: 1fr;
             }
 
+            .evolution-stages {
+                grid-template-columns: 1fr;
+            }
+
             .export-buttons {
                 flex-direction: column;
+            }
+
+            .btn {
+                padding: 14px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header p {
+                font-size: 1em;
+            }
+
+            .content {
+                padding: 15px;
+            }
+
+            .evolution-stage {
+                padding: 20px;
+            }
+
+            .stat-item {
+                padding: 16px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            .tabs, .export-buttons {
+                display: none;
+            }
+
+            .content {
+                padding: 20px;
+            }
+
+            .tab-content {
+                display: block !important;
+            }
+
+            .evolution-stage {
+                break-inside: avoid;
+                margin-bottom: 20px;
             }
         }
     </style>
@@ -1150,6 +1240,27 @@
                     dodge: 1,
                     initiative: 1
                 },
+                super: {
+                    stats: { power: 1, heart: 1, brains: 1, agility: 1 },
+                    hp: 12,
+                    damage: 3,
+                    dodge: 1,
+                    initiative: 1
+                },
+                ultra: {
+                    stats: { power: 1, heart: 1, brains: 1, agility: 1 },
+                    hp: 17,
+                    damage: 4,
+                    dodge: 1,
+                    initiative: 1
+                },
+                giga: {
+                    stats: { power: 1, heart: 1, brains: 1, agility: 1 },
+                    hp: 22,
+                    damage: 5,
+                    dodge: 1,
+                    initiative: 1
+                },
                 signatureAttack: {
                     name: '',
                     element: '',
@@ -1314,6 +1425,153 @@
             };
         }
 
+        // Super stage stats management
+        function updateSuperStats() {
+            const power = parseInt(document.getElementById('super-power').value);
+            const heart = parseInt(document.getElementById('super-heart').value);
+            const brains = parseInt(document.getElementById('super-brains').value);
+            const agility = parseInt(document.getElementById('super-agility').value);
+            
+            // Update display values
+            document.getElementById('super-power-value').textContent = power;
+            document.getElementById('super-heart-value').textContent = heart;
+            document.getElementById('super-brains-value').textContent = brains;
+            document.getElementById('super-agility-value').textContent = agility;
+            
+            // Calculate points used (each stat starts at 1, so subtract 4)
+            const pointsUsed = (power + heart + brains + agility) - 4;
+            const pointsRemaining = 10 - pointsUsed;
+            
+            const pointsDisplay = document.getElementById('super-points');
+            pointsDisplay.textContent = `Points remaining: ${pointsRemaining}`;
+            
+            if (pointsRemaining < 0) {
+                pointsDisplay.style.background = '#f8d7da';
+                pointsDisplay.style.color = '#721c24';
+            } else if (pointsRemaining === 0) {
+                pointsDisplay.style.background = '#d4edda';
+                pointsDisplay.style.color = '#155724';
+            } else {
+                pointsDisplay.style.background = '#e7f3ff';
+                pointsDisplay.style.color = '#0066cc';
+            }
+            
+            // Calculate derived stats
+            const hp = 8 + (4 * heart);
+            const damage = 3 * power;
+            const dodge = agility;
+            const initiative = brains;
+            
+            document.getElementById('super-hp').textContent = hp;
+            document.getElementById('super-damage').textContent = damage;
+            document.getElementById('super-dodge').textContent = dodge;
+            document.getElementById('super-initiative').textContent = initiative;
+            
+            // Update character data
+            characterData.animon.super = {
+                stats: { power, heart, brains, agility },
+                hp, damage, dodge, initiative
+            };
+        }
+
+        // Ultra stage stats management
+        function updateUltraStats() {
+            const power = parseInt(document.getElementById('ultra-power').value);
+            const heart = parseInt(document.getElementById('ultra-heart').value);
+            const brains = parseInt(document.getElementById('ultra-brains').value);
+            const agility = parseInt(document.getElementById('ultra-agility').value);
+            
+            // Update display values
+            document.getElementById('ultra-power-value').textContent = power;
+            document.getElementById('ultra-heart-value').textContent = heart;
+            document.getElementById('ultra-brains-value').textContent = brains;
+            document.getElementById('ultra-agility-value').textContent = agility;
+            
+            // Calculate points used (each stat starts at 1, so subtract 4)
+            const pointsUsed = (power + heart + brains + agility) - 4;
+            const pointsRemaining = 12 - pointsUsed;
+            
+            const pointsDisplay = document.getElementById('ultra-points');
+            pointsDisplay.textContent = `Points remaining: ${pointsRemaining}`;
+            
+            if (pointsRemaining < 0) {
+                pointsDisplay.style.background = '#f8d7da';
+                pointsDisplay.style.color = '#721c24';
+            } else if (pointsRemaining === 0) {
+                pointsDisplay.style.background = '#d4edda';
+                pointsDisplay.style.color = '#155724';
+            } else {
+                pointsDisplay.style.background = '#e7f3ff';
+                pointsDisplay.style.color = '#0066cc';
+            }
+            
+            // Calculate derived stats
+            const hp = 12 + (5 * heart);
+            const damage = 4 * power;
+            const dodge = agility;
+            const initiative = brains;
+            
+            document.getElementById('ultra-hp').textContent = hp;
+            document.getElementById('ultra-damage').textContent = damage;
+            document.getElementById('ultra-dodge').textContent = dodge;
+            document.getElementById('ultra-initiative').textContent = initiative;
+            
+            // Update character data
+            characterData.animon.ultra = {
+                stats: { power, heart, brains, agility },
+                hp, damage, dodge, initiative
+            };
+        }
+
+        // Giga stage stats management
+        function updateGigaStats() {
+            const power = parseInt(document.getElementById('giga-power').value);
+            const heart = parseInt(document.getElementById('giga-heart').value);
+            const brains = parseInt(document.getElementById('giga-brains').value);
+            const agility = parseInt(document.getElementById('giga-agility').value);
+            
+            // Update display values
+            document.getElementById('giga-power-value').textContent = power;
+            document.getElementById('giga-heart-value').textContent = heart;
+            document.getElementById('giga-brains-value').textContent = brains;
+            document.getElementById('giga-agility-value').textContent = agility;
+            
+            // Calculate points used (each stat starts at 1, so subtract 4)
+            const pointsUsed = (power + heart + brains + agility) - 4;
+            const pointsRemaining = 14 - pointsUsed;
+            
+            const pointsDisplay = document.getElementById('giga-points');
+            pointsDisplay.textContent = `Points remaining: ${pointsRemaining}`;
+            
+            if (pointsRemaining < 0) {
+                pointsDisplay.style.background = '#f8d7da';
+                pointsDisplay.style.color = '#721c24';
+            } else if (pointsRemaining === 0) {
+                pointsDisplay.style.background = '#d4edda';
+                pointsDisplay.style.color = '#155724';
+            } else {
+                pointsDisplay.style.background = '#e7f3ff';
+                pointsDisplay.style.color = '#0066cc';
+            }
+            
+            // Calculate derived stats
+            const hp = 16 + (6 * heart);
+            const damage = 5 * power;
+            const dodge = agility;
+            const initiative = brains;
+            
+            document.getElementById('giga-hp').textContent = hp;
+            document.getElementById('giga-damage').textContent = damage;
+            document.getElementById('giga-dodge').textContent = dodge;
+            document.getElementById('giga-initiative').textContent = initiative;
+            
+            // Update character data
+            characterData.animon.giga = {
+                stats: { power, heart, brains, agility },
+                hp, damage, dodge, initiative
+            };
+        }
+
         // Update summary
         function updateSummary() {
             // Collect all form data
@@ -1420,6 +1678,126 @@
                         <div class="stat-item">
                             <h4>Initiative</h4>
                             <p>${characterData.animon.fledgling.initiative}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>🔥 Super Stage Stats</h3>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>Power</h4>
+                            <p>${characterData.animon.super.stats.power}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Heart</h4>
+                            <p>${characterData.animon.super.stats.heart}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Brains</h4>
+                            <p>${characterData.animon.super.stats.brains}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Agility</h4>
+                            <p>${characterData.animon.super.stats.agility}</p>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>HP</h4>
+                            <p>${characterData.animon.super.hp}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Damage</h4>
+                            <p>${characterData.animon.super.damage}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Dodge</h4>
+                            <p>${characterData.animon.super.dodge}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Initiative</h4>
+                            <p>${characterData.animon.super.initiative}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>💥 Ultra Stage Stats</h3>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>Power</h4>
+                            <p>${characterData.animon.ultra.stats.power}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Heart</h4>
+                            <p>${characterData.animon.ultra.stats.heart}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Brains</h4>
+                            <p>${characterData.animon.ultra.stats.brains}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Agility</h4>
+                            <p>${characterData.animon.ultra.stats.agility}</p>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>HP</h4>
+                            <p>${characterData.animon.ultra.hp}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Damage</h4>
+                            <p>${characterData.animon.ultra.damage}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Dodge</h4>
+                            <p>${characterData.animon.ultra.dodge}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Initiative</h4>
+                            <p>${characterData.animon.ultra.initiative}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>🌟 Giga Stage Stats</h3>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>Power</h4>
+                            <p>${characterData.animon.giga.stats.power}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Heart</h4>
+                            <p>${characterData.animon.giga.stats.heart}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Brains</h4>
+                            <p>${characterData.animon.giga.stats.brains}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Agility</h4>
+                            <p>${characterData.animon.giga.stats.agility}</p>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>HP</h4>
+                            <p>${characterData.animon.giga.hp}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Damage</h4>
+                            <p>${characterData.animon.giga.damage}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Dodge</h4>
+                            <p>${characterData.animon.giga.dodge}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Initiative</h4>
+                            <p>${characterData.animon.giga.initiative}</p>
                         </div>
                     </div>
                 </div>
@@ -1537,6 +1915,30 @@
             document.getElementById('fledgling-brains').value = data.animon.fledgling.stats.brains;
             document.getElementById('fledgling-agility').value = data.animon.fledgling.stats.agility;
 
+            // Load Super stage stats
+            if (data.animon.super) {
+                document.getElementById('super-power').value = data.animon.super.stats.power;
+                document.getElementById('super-heart').value = data.animon.super.stats.heart;
+                document.getElementById('super-brains').value = data.animon.super.stats.brains;
+                document.getElementById('super-agility').value = data.animon.super.stats.agility;
+            }
+
+            // Load Ultra stage stats
+            if (data.animon.ultra) {
+                document.getElementById('ultra-power').value = data.animon.ultra.stats.power;
+                document.getElementById('ultra-heart').value = data.animon.ultra.stats.heart;
+                document.getElementById('ultra-brains').value = data.animon.ultra.stats.brains;
+                document.getElementById('ultra-agility').value = data.animon.ultra.stats.agility;
+            }
+
+            // Load Giga stage stats
+            if (data.animon.giga) {
+                document.getElementById('giga-power').value = data.animon.giga.stats.power;
+                document.getElementById('giga-heart').value = data.animon.giga.stats.heart;
+                document.getElementById('giga-brains').value = data.animon.giga.stats.brains;
+                document.getElementById('giga-agility').value = data.animon.giga.stats.agility;
+            }
+
             // Load Signature attack
             document.getElementById('signature-name').value = data.animon.signatureAttack.name || '';
             document.getElementById('signature-element').value = data.animon.signatureAttack.element || '';
@@ -1546,6 +1948,9 @@
             updateTraitPoints();
             updateBasicStats();
             updateFledglingStats();
+            updateSuperStats();
+            updateUltraStats();
+            updateGigaStats();
 
             alert('Character data loaded successfully!');
         }
@@ -1554,6 +1959,9 @@
         document.addEventListener('DOMContentLoaded', function() {
             updateBasicStats();
             updateFledglingStats();
+            updateSuperStats();
+            updateUltraStats();
+            updateGigaStats();
         });
     </script>
 </body>
