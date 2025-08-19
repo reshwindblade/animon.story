@@ -1,0 +1,98 @@
+{
+  "kid_examples": [
+    {
+      "id": "maya-bookworm",
+      "name": "Maya Chen",
+      "type": "Bookworm",
+      "traits": {
+        "body": 2,
+        "mind": 4,
+        "spirit": 3
+      },
+      "talent": "Research",
+      "flaw": "Overthinking",
+      "desire": "To discover ancient Animon lore",
+      "specialItem": "Ancient Tome",
+      "virtue": "Wisdom",
+      "description": "Maya is a studious character who excels at research and knowledge-based challenges. Her high Mind trait makes her excellent at puzzles and strategy.",
+      "tips": [
+        "Use her Research talent to find hidden information",
+        "Her Ancient Tome provides knowledge bonuses",
+        "Pair with a supportive Animon to cover physical weaknesses"
+      ]
+    },
+    {
+      "id": "jake-athlete",
+      "name": "Jake Rodriguez",
+      "type": "Athlete",
+      "traits": {
+        "body": 4,
+        "mind": 2,
+        "spirit": 3
+      },
+      "talent": "Parkour",
+      "flaw": "Impatient",
+      "desire": "To become the fastest trainer",
+      "specialItem": "Running Shoes",
+      "virtue": "Courage",
+      "description": "Jake is a physically capable character who excels in action and athletics. His high Body trait makes him great at physical challenges.",
+      "tips": [
+        "Use his Parkour talent for movement advantages",
+        "Running Shoes provide speed bonuses",
+        "His impatience can create interesting roleplay moments"
+      ]
+    }
+  ],
+  "animon_examples": [
+    {
+      "id": "sparkwing-electric",
+      "name": "Sparkwing",
+      "classification": "Aerial",
+      "element": "Electric",
+      "nature": "Energetic",
+      "stats": {
+        "power": 2,
+        "heart": 3,
+        "brains": 1,
+        "agility": 4
+      },
+      "signatureAttack": {
+        "name": "Lightning Dive",
+        "element": "Electric",
+        "effect": "High-speed electric attack",
+        "uses": 1
+      },
+      "description": "Sparkwing is a fast, electric-type flying Animon that excels at hit-and-run tactics.",
+      "tips": [
+        "High Agility makes it very fast and hard to hit",
+        "Electric element is strong against Water and Aerial types",
+        "Lightning Dive combines speed with electric damage"
+      ]
+    },
+    {
+      "id": "rockshield-earth",
+      "name": "Rockshield",
+      "classification": "Beast",
+      "element": "Earth",
+      "nature": "Protective",
+      "stats": {
+        "power": 3,
+        "heart": 4,
+        "brains": 2,
+        "agility": 1
+      },
+      "signatureAttack": {
+        "name": "Stone Barrier",
+        "element": "Earth",
+        "effect": "Creates protective barriers",
+        "uses": 2
+      },
+      "description": "Rockshield is a defensive Earth-type Animon that specializes in protection and endurance.",
+      "tips": [
+        "High Heart gives excellent HP and survivability",
+        "Earth element resists many attack types",
+        "Stone Barrier can protect allies"
+      ]
+    }
+  ]
+}

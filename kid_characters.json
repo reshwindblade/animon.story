@@ -1,0 +1,450 @@
+[
+  {
+    "name": "Bookworm",
+    "description": "A lover of knowledge, stories, and quiet moments. Bookworms seek answers in pages and often surprise others with their insight.",
+    "type_feature": "Knowledge is Power",
+    "special_items": [
+      "A bag of emergency supplies",
+      "An atlas, encyclopedia, or favourite novel",
+      "A universal translator"
+    ],
+    "talents": [
+      "Academic Knowledge",
+      "Insatiable Curiosity",
+      "Photographic Memory",
+      "Perceptive",
+      "Public Speaking"
+    ],
+    "flaws": [
+      "Lots of Allergies",
+      "Can\u2019t See Without Glasses",
+      "Terribly Shy"
+    ],
+    "desires": [
+      "I need to have all the answers",
+      "I must live up to my parents\u2019 expectations",
+      "I want to rid myself of all my fears"
+    ],
+    "stuff": [
+      "A library card and some change",
+      "A pen and scrap paper",
+      "An eraser and a folded test report"
+    ]
+  },
+  {
+    "name": "Computer Wizard",
+    "description": "Tech-savvy and digitally inclined, Computer Wizards navigate the online world with ease and excel in coding, building, and problem solving.",
+    "type_feature": "I Know This System!",
+    "special_items": [
+      "A trusty laptop running a custom OS",
+      "A cutting-edge smart device",
+      "A video camera containing old family videos"
+    ],
+    "talents": [
+      "Hacking",
+      "Programming",
+      "Mechanics",
+      "Meticulous",
+      "Well-mannered"
+    ],
+    "flaws": [
+      "Insensitive",
+      "Paranoid",
+      "Poor Situational Awareness"
+    ],
+    "desires": [
+      "I need to be recognised for my genius",
+      "I must get tougher than the bullies",
+      "I want to know what secrets are being kept from me"
+    ],
+    "stuff": [
+      "A calculator and a mechanical pencil",
+      "A geometry set and some marbles",
+      "Graph paper and a ruler"
+    ]
+  },
+  {
+    "name": "Delinquent",
+    "description": "Rough around the edges but hiding something deeper, Delinquents act tough and often break rules\u2014but sometimes, it\u2019s all just a shield.",
+    "type_feature": "Don\u2019t Mess with Me!",
+    "special_items": [
+      "A can of spray paint",
+      "A skateboard",
+      "A baseball bat"
+    ],
+    "talents": [
+      "Boxing",
+      "Roguish Charm",
+      "Intimidating",
+      "Tough as Nails",
+      "Pickpocket"
+    ],
+    "flaws": [
+      "Short Fuse",
+      "Jealous",
+      "Dishonest"
+    ],
+    "desires": [
+      "I need to hide my weakness",
+      "I must fight the world and win",
+      "I want to be totally independent"
+    ],
+    "stuff": [
+      "A laser pen and some change",
+      "An earring and a hair comb",
+      "A padlock with a matching key"
+    ]
+  },
+  {
+    "name": "Free Spirit",
+    "description": "Creative, dreamy, and often seen as odd, Free Spirits bring joy and imagination wherever they go. They walk to their own rhythm.",
+    "type_feature": "Luminous Being",
+    "special_items": [
+      "An acoustic guitar",
+      "A colourful umbrella",
+      "A set of homemade tarot cards"
+    ],
+    "talents": [
+      "Musical",
+      "Dancing",
+      "Artistic",
+      "Confident",
+      "Cheery Disposition"
+    ],
+    "flaws": [
+      "Forgetful",
+      "Naive",
+      "Messy"
+    ],
+    "desires": [
+      "I need to make everyone happy",
+      "I must become a better role-model",
+      "I want someone to really understand me"
+    ],
+    "stuff": [
+      "A pair of DIY friendship bracelets",
+      "Incense sticks and a cute keyring",
+      "A handkerchief and a bag of jelly babies"
+    ]
+  },
+  {
+    "name": "Gamer",
+    "description": "A master of strategy, reflexes, and high scores, Gamers always seek to prove themselves and level up\u2014in games and in life.",
+    "type_feature": "Play of the Game",
+    "special_items": [
+      "A handheld games console",
+      "A customised controller",
+      "A lucky pair of dice"
+    ],
+    "talents": [
+      "Strategist",
+      "Unwavering Focus",
+      "Ready for Anything",
+      "Fast Learner",
+      "Team Player"
+    ],
+    "flaws": [
+      "Arrogant",
+      "Obsessive",
+      "Poor Loser"
+    ],
+    "desires": [
+      "I need to unlock my full potential",
+      "I must prove I am the best",
+      "I want my parents to be proud of my achievements"
+    ],
+    "stuff": [
+      "A capsule toy and some arcade tokens",
+      "A pack of chewing gum and an energy drink",
+      "A set of trading cards and an \u2018Action Replay\u2019"
+    ]
+  },
+  {
+    "name": "Loner",
+    "description": "Reserved and independent, Loners prefer solitude but often possess inner strength and perception that surprises others.",
+    "type_feature": "I Work Alone",
+    "special_items": [
+      "A hooded jacket",
+      "A cassette player",
+      "A tiny sketchbook"
+    ],
+    "talents": [
+      "Keen Senses",
+      "High Pain Tolerance",
+      "Stealthy",
+      "Quiet Wisdom",
+      "Emotionally Resilient"
+    ],
+    "flaws": [
+      "Awkward",
+      "Antisocial",
+      "Bottled-Up Emotions"
+    ],
+    "desires": [
+      "I want to be left alone",
+      "I must protect myself from getting hurt",
+      "I need to learn to trust again"
+    ],
+    "stuff": [
+      "A photo of someone important",
+      "A pocket knife and old coin",
+      "A crumpled train ticket"
+    ]
+  },
+  {
+    "name": "Nerd",
+    "description": "Passionate and enthusiastic about their interests, Nerds are often underestimated despite their focus and loyalty.",
+    "type_feature": "That\u2019s My Special Interest!",
+    "special_items": [
+      "A comic book collection",
+      "A model robot",
+      "A themed lunchbox"
+    ],
+    "talents": [
+      "Trivial Knowledge",
+      "Passionate",
+      "Organised",
+      "Inventive",
+      "Eager Learner"
+    ],
+    "flaws": [
+      "Socially Awkward",
+      "Easily Distracted",
+      "Pedantic"
+    ],
+    "desires": [
+      "I want to show everyone how awesome my fandom is",
+      "I need to prove I can be brave too",
+      "I must share my obsession with someone else"
+    ],
+    "stuff": [
+      "Fan club badge",
+      "Mini dice set",
+      "Sci-fi themed keyring"
+    ]
+  },
+  {
+    "name": "Popular Kid",
+    "description": "Confident and stylish, Popular Kids often shine in social settings. But there's often more than meets the eye.",
+    "type_feature": "All Eyes on Me",
+    "special_items": [
+      "A makeup kit",
+      "Designer sunglasses",
+      "A sparkly phone case"
+    ],
+    "talents": [
+      "Persuasive",
+      "Fashionable",
+      "Well-Connected",
+      "Confident",
+      "Entertainer"
+    ],
+    "flaws": [
+      "Insecure",
+      "Vain",
+      "Judgemental"
+    ],
+    "desires": [
+      "I must always be liked",
+      "I want to discover who I really am",
+      "I need to stand out, no matter what"
+    ],
+    "stuff": [
+      "Lip gloss and hairbrush",
+      "Compliment journal",
+      "Polaroid with friends"
+    ]
+  },
+  {
+    "name": "Rich Kid",
+    "description": "Wealthy and resourceful, Rich Kids have access to incredible things\u2014but may struggle with deeper connections.",
+    "type_feature": "You Can Count On Me (and My Money)",
+    "special_items": [
+      "A platinum credit card",
+      "A butler's phone number",
+      "A rare collector's watch"
+    ],
+    "talents": [
+      "Resourceful",
+      "Well-Traveled",
+      "Multi-Lingual",
+      "Charming",
+      "Generous"
+    ],
+    "flaws": [
+      "Spoiled",
+      "Entitled",
+      "Sheltered"
+    ],
+    "desires": [
+      "I want to prove I can survive on my own",
+      "I must be better than everyone else",
+      "I need to help others with my privilege"
+    ],
+    "stuff": [
+      "Monogrammed wallet",
+      "Business card from someone important",
+      "Custom stationery"
+    ]
+  },
+  {
+    "name": "Shy Kid",
+    "description": "Soft-spoken and sweet, Shy Kids may take time to open up, but have deep empathy and perception.",
+    "type_feature": "I Just Want to Help",
+    "special_items": [
+      "A comfort plush",
+      "A music player with calming sounds",
+      "A worry stone"
+    ],
+    "talents": [
+      "Empathic",
+      "Good Listener",
+      "Gentle Touch",
+      "Caring",
+      "Observant"
+    ],
+    "flaws": [
+      "Silent",
+      "Indecisive",
+      "Scared of Attention"
+    ],
+    "desires": [
+      "I must make someone smile today",
+      "I want to stop being so afraid",
+      "I need to prove I\u2019m brave"
+    ],
+    "stuff": [
+      "A soft blanket",
+      "A packet of tissues",
+      "Notebook with poems"
+    ]
+  },
+  {
+    "name": "Sporty Kid",
+    "description": "Energetic and goal-driven, Sporty Kids love physical challenges and know the value of teamwork.",
+    "type_feature": "Let\u2019s Do This!",
+    "special_items": [
+      "A signed sports ball",
+      "Sweatband and whistle",
+      "Training schedule"
+    ],
+    "talents": [
+      "Athletic",
+      "Team Spirit",
+      "Tactical Thinking",
+      "Fearless",
+      "Focused"
+    ],
+    "flaws": [
+      "Overcompetitive",
+      "Brash",
+      "Short Tempered"
+    ],
+    "desires": [
+      "I must be the best there ever was",
+      "I want to win, fair and square",
+      "I need to prove I\u2019m not just brawn"
+    ],
+    "stuff": [
+      "Protein bar",
+      "Sports drink",
+      "Team photo"
+    ]
+  },
+  {
+    "name": "Theatre Kid",
+    "description": "Dramatic and expressive, Theatre Kids bring passion and flair to everything they do.",
+    "type_feature": "To Be or Not To Be",
+    "special_items": [
+      "Script with handwritten notes",
+      "Makeup kit",
+      "A prop sword"
+    ],
+    "talents": [
+      "Acting",
+      "Dramatic Flair",
+      "Voice Projection",
+      "Improvisation",
+      "Creative Writing"
+    ],
+    "flaws": [
+      "Attention-Seeking",
+      "Moody",
+      "Melodramatic"
+    ],
+    "desires": [
+      "I need to get the lead role",
+      "I want to be seen for who I am",
+      "I must write my own ending"
+    ],
+    "stuff": [
+      "Stage light keychain",
+      "Ticket stub",
+      "Backstage pass"
+    ]
+  },
+  {
+    "name": "Troublemaker",
+    "description": "Always up to something, Troublemakers are chaotic forces of mischief with hearts of gold underneath.",
+    "type_feature": "Whoops!",
+    "special_items": [
+      "Water balloons",
+      "A slingshot",
+      "A fake moustache"
+    ],
+    "talents": [
+      "Sleight of Hand",
+      "Improvisation",
+      "Prankster",
+      "Clever",
+      "Sneaky"
+    ],
+    "flaws": [
+      "Impulsive",
+      "Reckless",
+      "Disruptive"
+    ],
+    "desires": [
+      "I want to pull the ultimate prank",
+      "I need someone to take me seriously",
+      "I must make things right\u2026 someday"
+    ],
+    "stuff": [
+      "Itchy powder",
+      "Note that says 'Sorry!'",
+      "Whoopee cushion"
+    ]
+  },
+  {
+    "name": "Transfer Student",
+    "description": "New to town, Transfer Students bring a fresh perspective and often have mysterious pasts.",
+    "type_feature": "Where I Come From...",
+    "special_items": [
+      "A passport",
+      "A map of the city",
+      "Family heirloom"
+    ],
+    "talents": [
+      "Adaptable",
+      "Multi-Cultural Knowledge",
+      "Observant",
+      "Polite",
+      "Mysterious"
+    ],
+    "flaws": [
+      "Homesick",
+      "Culture Shock",
+      "Evasive"
+    ],
+    "desires": [
+      "I want to fit in somewhere",
+      "I must keep my secret hidden",
+      "I need to make a new start"
+    ],
+    "stuff": [
+      "Transit pass",
+      "Old family photo",
+      "Postcard from a friend"
+    ]
+  }
+]

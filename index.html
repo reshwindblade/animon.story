@@ -6,7 +6,7 @@
     <title>Animon Story Character Creator</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-        
+
         * {
             margin: 0;
             padding: 0;
@@ -20,31 +20,31 @@
             --dark-gradient: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
             --warning-gradient: linear-gradient(135deg, #fc4a1a 0%, #f7b733 100%);
-            
+
             --primary-color: #4facfe;
             --secondary-color: #667eea;
             --accent-color: #fa709a;
             --success-color: #11998e;
             --warning-color: #fc4a1a;
             --dark-color: #2c3e50;
-            
+
             --text-primary: #2c3e50;
             --text-secondary: #7f8c8d;
             --text-light: #bdc3c7;
-            
+
             --bg-primary: #ffffff;
             --bg-secondary: #f8f9fb;
             --bg-tertiary: #ecf0f1;
-            
+
             --border-radius: 16px;
             --border-radius-lg: 24px;
             --border-radius-sm: 8px;
-            
+
             --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
             --shadow-md: 0 8px 25px rgba(0,0,0,0.1);
             --shadow-lg: 0 20px 40px rgba(0,0,0,0.15);
             --shadow-xl: 0 25px 50px rgba(0,0,0,0.25);
-            
+
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
@@ -360,6 +360,66 @@
             font-weight: 700;
         }
 
+        .stage-signature-attack {
+            background: rgba(252, 74, 26, 0.05);
+            border: 1px solid rgba(252, 74, 26, 0.2);
+            border-radius: var(--border-radius-sm);
+            padding: 16px;
+            margin-top: 16px;
+        }
+
+        .stage-signature-attack h5 {
+            color: var(--warning-color);
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stage-signature-attack .form-row {
+            gap: 12px;
+        }
+
+        .stage-signature-attack .form-group {
+            margin-bottom: 12px;
+        }
+
+        .stage-signature-attack input,
+        .stage-signature-attack select {
+            padding: 6px 8px;
+            font-size: 12px;
+            border: 1px solid var(--bg-tertiary);
+            border-radius: 4px;
+        }
+
+        .stage-signature-attack label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .effects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .effect-input {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .effect-input input {
+            flex: 1;
+        }
+
+        .effect-input select {
+            width: 80px;
+        }
+
         .quality-item {
             background: linear-gradient(135deg, var(--bg-primary) 0%, #e8f5e8 100%);
             padding: 20px;
@@ -519,17 +579,17 @@
         }
 
         .evolution-stages {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 24px;
-            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 24px;
         }
 
         .evolution-stage {
             background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             border: 2px solid var(--bg-tertiary);
             border-radius: var(--border-radius);
-            padding: 32px;
+            padding: 20px;
             position: relative;
             transition: var(--transition);
             overflow: hidden;
@@ -541,14 +601,14 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 6px;
+            height: 4px;
             background: var(--secondary-gradient);
             transform: scaleX(0);
             transition: var(--transition);
         }
 
         .evolution-stage:hover {
-            transform: translateY(-4px);
+            transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
 
@@ -568,12 +628,239 @@
 
         .evolution-stage h4 {
             color: var(--primary-color);
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             text-align: center;
             font-weight: 700;
-            font-size: 20px;
+            font-size: 18px;
             text-transform: uppercase;
             letter-spacing: 1px;
+        }
+
+        .stage-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .stage-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .stage-derived {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .compact-stat-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 12px;
+            border-radius: var(--border-radius-sm);
+            text-align: center;
+            border: 1px solid var(--bg-tertiary);
+            transition: var(--transition);
+        }
+
+        .compact-stat-item:hover {
+            background: rgba(255, 255, 255, 0.9);
+            border-color: var(--primary-color);
+        }
+
+        .compact-stat-item label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .compact-stat-item .stat-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .compact-stat-slider {
+            width: 100%;
+            margin: 4px 0;
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            border-radius: 3px;
+            background: var(--bg-tertiary);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .compact-stat-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--secondary-gradient);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .compact-stat-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.1);
+        }
+
+        .compact-stat-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--secondary-gradient);
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .stage-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .stage-header h4 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .stage-requirement {
+            font-size: 11px;
+            background: rgba(79, 172, 254, 0.1);
+            color: var(--primary-color);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .compact-points-remaining {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            padding: 8px 12px;
+            border-radius: var(--border-radius-sm);
+            margin-bottom: 12px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--primary-color);
+            border: 1px solid rgba(79, 172, 254, 0.2);
+        }
+
+        .stage-qualities {
+            margin-top: 16px;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: var(--border-radius-sm);
+            border: 1px solid var(--bg-tertiary);
+        }
+
+        .stage-qualities h5 {
+            margin: 0 0 12px 0;
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+        }
+
+        .stage-qualities .form-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .stage-qualities label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .stage-qualities input[type="text"] {
+            flex: 1;
+            padding: 4px 8px;
+            border: 1px solid var(--bg-tertiary);
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .stage-qualities input[type="number"] {
+            width: 50px;
+            padding: 4px 6px;
+            border: 1px solid var(--bg-tertiary);
+            border-radius: 4px;
+            font-size: 11px;
+        }
+
+        .character-info {
+            background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%);
+            border: 1px solid rgba(79, 172, 254, 0.2);
+            border-radius: var(--border-radius-sm);
+            padding: 16px;
+            margin: 16px 0;
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+
+        .character-info h4 {
+            color: var(--primary-color);
+            margin: 0 0 8px 0;
+            font-weight: 600;
+        }
+
+        .character-info p {
+            margin: 4px 0;
+            line-height: 1.5;
+        }
+
+        .suggestion-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .suggestion-tag {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .suggestion-tag:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .element-effectiveness {
+            display: flex;
+            gap: 16px;
+            margin-top: 8px;
+            font-size: 12px;
+        }
+
+        .effectiveness-strong {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        .effectiveness-weak {
+            color: #ef4444;
+            font-weight: 600;
         }
 
         @media (max-width: 768px) {
@@ -611,11 +898,22 @@
             }
 
             .stat-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .evolution-stages {
+            .stage-content {
                 grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .stage-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+
+            .stage-derived {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
             }
 
             .export-buttons {
@@ -625,6 +923,18 @@
             .btn {
                 padding: 14px 20px;
                 font-size: 14px;
+            }
+
+            .evolution-stage {
+                padding: 16px;
+            }
+
+            .compact-stat-item {
+                padding: 8px;
+            }
+
+            .compact-stat-item .stat-value {
+                font-size: 16px;
             }
         }
 
@@ -646,11 +956,38 @@
             }
 
             .evolution-stage {
-                padding: 20px;
+                padding: 12px;
             }
 
-            .stat-item {
-                padding: 16px;
+            .stage-stats {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+
+            .stage-derived {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+
+            .compact-stat-item {
+                padding: 6px;
+            }
+
+            .compact-stat-item label {
+                font-size: 10px;
+            }
+
+            .compact-stat-item .stat-value {
+                font-size: 14px;
+            }
+
+            .stage-header h4 {
+                font-size: 14px;
+            }
+
+            .stage-requirement {
+                font-size: 9px;
+                padding: 2px 6px;
             }
         }
 
@@ -706,6 +1043,11 @@
                     The main characters of Animon Story are the Kids and their partner Animon. Each Kid has unique traits, talents, and a special relationship with their Animon companion.
                 </div>
 
+                <div class="form-group">
+                    <label for="player-name">Player Name:</label>
+                    <input type="text" id="player-name" placeholder="Enter your name">
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="kid-name">Kid Name:</label>
@@ -730,6 +1072,33 @@
                             <option value="wild-child">Wild Child</option>
                             <option value="young-aristocrat">Young Aristocrat</option>
                         </select>
+                    </div>
+                </div>
+
+                <!-- Kid Type Information Display -->
+                <div id="kid-type-info" class="character-info" style="display: none;">
+                    <h4 id="kid-type-title">Kid Type Information</h4>
+                    <p id="kid-type-description"></p>
+                    <p><strong>Type Feature:</strong> <span id="kid-type-feature"></span></p>
+
+                    <div class="suggestion-section">
+                        <p><strong>Suggested Talents:</strong></p>
+                        <div class="suggestion-list" id="suggested-talents"></div>
+                    </div>
+
+                    <div class="suggestion-section">
+                        <p><strong>Suggested Flaws:</strong></p>
+                        <div class="suggestion-list" id="suggested-flaws"></div>
+                    </div>
+
+                    <div class="suggestion-section">
+                        <p><strong>Suggested Desires:</strong></p>
+                        <div class="suggestion-list" id="suggested-desires"></div>
+                    </div>
+
+                    <div class="suggestion-section">
+                        <p><strong>Suggested Special Items:</strong></p>
+                        <div class="suggestion-list" id="suggested-special-items"></div>
                     </div>
                 </div>
 
@@ -800,6 +1169,61 @@
                 <div class="form-group">
                     <label for="kid-stuff">Stuff (Other items):</label>
                     <textarea id="kid-stuff" rows="3" placeholder="List other items the Kid carries"></textarea>
+                </div>
+
+                <!-- Bond Level Section -->
+                <div class="form-section">
+                    <h3>Bond Level & Experience</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bond-level">Bond Level:</label>
+                            <input type="number" id="bond-level" min="1" max="10" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="xp">XP:</label>
+                            <input type="number" id="xp" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="bond-points">Bond Points:</label>
+                            <input type="number" id="bond-points" min="0" value="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="bond-strain">Bond Strain:</label>
+                            <input type="number" id="bond-strain" min="0" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Harm Section -->
+                <div class="form-section">
+                    <h3>Harm</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Harm Level 1:</label>
+                            <input type="text" id="harm-1" placeholder="Minor injuries">
+                        </div>
+                        <div class="form-group">
+                            <label>Harm Level 2:</label>
+                            <input type="text" id="harm-2" placeholder="Moderate injuries">
+                        </div>
+                        <div class="form-group">
+                            <label>Harm Level 3:</label>
+                            <input type="text" id="harm-3" placeholder="Severe injuries">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="shaken"> Shaken
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Relationships Section -->
+                <div class="form-section">
+                    <h3>Relationships</h3>
+                    <div class="form-group">
+                        <textarea id="relationships" rows="4" placeholder="Describe relationships with other Kids, family members, or important NPCs"></textarea>
+                    </div>
                 </div>
             </div>
 
@@ -873,262 +1297,539 @@
                     </div>
                 </div>
 
+                <!-- Animon Information Display -->
+                <div id="animon-info" class="character-info" style="display: none;">
+                    <div id="classification-info" style="display: none;">
+                        <h4 id="classification-title">Classification Information</h4>
+                        <p id="classification-description"></p>
+                    </div>
+
+                    <div id="element-info" style="display: none;">
+                        <h4 id="element-title">Element Information</h4>
+                        <div class="element-effectiveness">
+                            <span class="effectiveness-strong" id="element-strong"></span>
+                            <span class="effectiveness-weak" id="element-weak"></span>
+                        </div>
+                    </div>
+
+                    <div id="nature-info" style="display: none;">
+                        <h4 id="nature-title">Nature Information</h4>
+                        <p id="nature-description"></p>
+                    </div>
+                </div>
+
                 <div class="evolution-stages">
-                    <!-- Basic Stage -->
+                    <!-- Fledgling Stage -->
                     <div class="evolution-stage current">
-                        <h4>BASIC Stage</h4>
-                        <div class="form-group">
-                            <label>Stats (Distribute 8 points, max 4 per stat):</label>
-                            <div class="points-remaining" id="basic-points">Points remaining: 8</div>
+                        <div class="stage-header">
+                            <h4>FLEDGLING Stage</h4>
+                        </div>
+                        <div class="compact-points-remaining" id="fledgling-points">Points remaining: 4</div>
 
-                            <div class="stat-item">
-                                <label>Power: <span id="basic-power-value">1</span></label>
-                                <input type="range" id="basic-power" min="1" max="4" value="1" class="stat-slider" onchange="updateBasicStats()">
-                                <small>Strength and attack power</small>
+                        <div class="stage-content">
+                            <div class="stage-stats">
+                                <div class="compact-stat-item">
+                                    <label>Power</label>
+                                    <div class="stat-value" id="fledgling-power-value">1</div>
+                                    <input type="range" id="fledgling-power" min="1" max="3" value="1" class="compact-stat-slider" onchange="updateFledglingStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Heart</label>
+                                    <div class="stat-value" id="fledgling-heart-value">1</div>
+                                    <input type="range" id="fledgling-heart" min="1" max="3" value="1" class="compact-stat-slider" onchange="updateFledglingStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Brains</label>
+                                    <div class="stat-value" id="fledgling-brains-value">1</div>
+                                    <input type="range" id="fledgling-brains" min="1" max="3" value="1" class="compact-stat-slider" onchange="updateFledglingStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Agility</label>
+                                    <div class="stat-value" id="fledgling-agility-value">1</div>
+                                    <input type="range" id="fledgling-agility" min="1" max="3" value="1" class="compact-stat-slider" onchange="updateFledglingStats()">
+                                </div>
                             </div>
 
-                            <div class="stat-item">
-                                <label>Heart: <span id="basic-heart-value">1</span></label>
-                                <input type="range" id="basic-heart" min="1" max="4" value="1" class="stat-slider" onchange="updateBasicStats()">
-                                <small>Vitality and endurance</small>
-                            </div>
-
-                            <div class="stat-item">
-                                <label>Brains: <span id="basic-brains-value">1</span></label>
-                                <input type="range" id="basic-brains" min="1" max="4" value="1" class="stat-slider" onchange="updateBasicStats()">
-                                <small>Intelligence and perception</small>
-                            </div>
-
-                            <div class="stat-item">
-                                <label>Agility: <span id="basic-agility-value">1</span></label>
-                                <input type="range" id="basic-agility" min="1" max="4" value="1" class="stat-slider" onchange="updateBasicStats()">
-                                <small>Speed and reflexes</small>
+                            <div class="stage-derived">
+                                <div class="compact-stat-item">
+                                    <label>HP</label>
+                                    <div class="stat-value" id="fledgling-hp">3</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Damage</label>
+                                    <div class="stat-value" id="fledgling-damage">1</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Dodge</label>
+                                    <div class="stat-value" id="fledgling-dodge">1</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Initiative</label>
+                                    <div class="stat-value" id="fledgling-initiative">1</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="stat-grid" id="basic-derived">
-                            <div class="stat-item">
-                                <h4>HP</h4>
-                                <span id="basic-hp">8</span>
+                        <!-- Fledgling Qualities -->
+                        <div class="stage-qualities">
+                            <h5>Qualities (Max 2, Rank 1)</h5>
+                            <div class="form-group">
+                                <label>Quality 1:</label>
+                                <input type="text" id="fledgling-quality-1" placeholder="e.g., Enhanced Senses">
+                                <label>Rank:</label>
+                                <input type="number" id="fledgling-quality-1-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Damage</h4>
-                                <span id="basic-damage">2</span>
-                            </div>
-                            <div class="stat-item">
-                                <h4>Dodge</h4>
-                                <span id="basic-dodge">1</span>
-                            </div>
-                            <div class="stat-item">
-                                <h4>Initiative</h4>
-                                <span id="basic-initiative">1</span>
+                            <div class="form-group">
+                                <label>Quality 2:</label>
+                                <input type="text" id="fledgling-quality-2" placeholder="e.g., Thick Hide">
+                                <label>Rank:</label>
+                                <input type="number" id="fledgling-quality-2-rank" min="1" max="3" value="1">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Fledgling Stage -->
+                    <!-- Basic Stage -->
                     <div class="evolution-stage">
-                        <h4>FLEDGLING Stage</h4>
-                        <div class="form-group">
-                            <label>Stats (Distribute 4 points, max 3 per stat):</label>
-                            <div class="points-remaining" id="fledgling-points">Points remaining: 4</div>
+                        <div class="stage-header">
+                            <h4>BASIC Stage</h4>
+                        </div>
+                        <div class="compact-points-remaining" id="basic-points">Points remaining: 8</div>
 
-                            <div class="stat-item">
-                                <label>Power: <span id="fledgling-power-value">1</span></label>
-                                <input type="range" id="fledgling-power" min="1" max="3" value="1" class="stat-slider" onchange="updateFledglingStats()">
+                        <div class="stage-content">
+                            <div class="stage-stats">
+                                <div class="compact-stat-item">
+                                    <label>Power</label>
+                                    <div class="stat-value" id="basic-power-value">1</div>
+                                    <input type="range" id="basic-power" min="1" max="4" value="1" class="compact-stat-slider" onchange="updateBasicStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Heart</label>
+                                    <div class="stat-value" id="basic-heart-value">1</div>
+                                    <input type="range" id="basic-heart" min="1" max="4" value="1" class="compact-stat-slider" onchange="updateBasicStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Brains</label>
+                                    <div class="stat-value" id="basic-brains-value">1</div>
+                                    <input type="range" id="basic-brains" min="1" max="4" value="1" class="compact-stat-slider" onchange="updateBasicStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Agility</label>
+                                    <div class="stat-value" id="basic-agility-value">1</div>
+                                    <input type="range" id="basic-agility" min="1" max="4" value="1" class="compact-stat-slider" onchange="updateBasicStats()">
+                                </div>
                             </div>
 
-                            <div class="stat-item">
-                                <label>Heart: <span id="fledgling-heart-value">1</span></label>
-                                <input type="range" id="fledgling-heart" min="1" max="3" value="1" class="stat-slider" onchange="updateFledglingStats()">
-                            </div>
-
-                            <div class="stat-item">
-                                <label>Brains: <span id="fledgling-brains-value">1</span></label>
-                                <input type="range" id="fledgling-brains" min="1" max="3" value="1" class="stat-slider" onchange="updateFledglingStats()">
-                            </div>
-
-                            <div class="stat-item">
-                                <label>Agility: <span id="fledgling-agility-value">1</span></label>
-                                <input type="range" id="fledgling-agility" min="1" max="3" value="1" class="stat-slider" onchange="updateFledglingStats()">
+                            <div class="stage-derived">
+                                <div class="compact-stat-item">
+                                    <label>HP</label>
+                                    <div class="stat-value" id="basic-hp">8</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Damage</label>
+                                    <div class="stat-value" id="basic-damage">2</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Dodge</label>
+                                    <div class="stat-value" id="basic-dodge">1</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Initiative</label>
+                                    <div class="stat-value" id="basic-initiative">1</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="stat-grid" id="fledgling-derived">
-                            <div class="stat-item">
-                                <h4>HP</h4>
-                                <span id="fledgling-hp">3</span>
+                        <!-- Basic Qualities -->
+                        <div class="stage-qualities">
+                            <h5>Qualities (Max 2, Rank 1-2)</h5>
+                            <div class="form-group">
+                                <label>Quality 1:</label>
+                                <input type="text" id="basic-quality-1" placeholder="e.g., Enhanced Senses">
+                                <label>Rank:</label>
+                                <input type="number" id="basic-quality-1-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Damage</h4>
-                                <span id="fledgling-damage">1</span>
+                            <div class="form-group">
+                                <label>Quality 2:</label>
+                                <input type="text" id="basic-quality-2" placeholder="e.g., Thick Hide">
+                                <label>Rank:</label>
+                                <input type="number" id="basic-quality-2-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Dodge</h4>
-                                <span id="fledgling-dodge">1</span>
+                        </div>
+
+                        <div class="stage-signature-attack">
+                            <h5>Signature Attack</h5>
+                            <div class="form-group">
+                                <label>Attack Name:</label>
+                                <input type="text" id="basic-attack-name" placeholder="e.g., Flame Burst">
                             </div>
-                            <div class="stat-item">
-                                <h4>Initiative</h4>
-                                <span id="fledgling-initiative">1</span>
+                            <div class="form-group">
+                                <label>Element:</label>
+                                <select id="basic-attack-element">
+                                    <option value="">Select Element</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Earth">Earth</option>
+                                    <option value="Air">Air</option>
+                                    <option value="Lightning">Lightning</option>
+                                    <option value="Ice">Ice</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Metal">Metal</option>
+                                    <option value="Light">Light</option>
+                                    <option value="Dark">Dark</option>
+                                    <option value="Spirit">Spirit</option>
+                                    <option value="None">None</option>
+                                </select>
+                            </div>
+                            <div class="effects-grid">
+                                <label>Effects:</label>
+                                <div class="effect-input">
+                                    <input type="text" id="basic-attack-effect-1" placeholder="e.g., Deal 2 Harm">
+                                </div>
+                                <div class="effect-input">
+                                    <input type="text" id="basic-attack-effect-2" placeholder="e.g., Burn (1 round)">
+                                </div>
+                                <div class="effect-input">
+                                    <input type="text" id="basic-attack-effect-3" placeholder="Additional effect">
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Super Stage -->
                     <div class="evolution-stage">
-                        <h4>SUPER Stage</h4>
-                        <div class="form-group">
-                            <div class="points-remaining">Bond Level 3 Required</div>
-                            <label>Stats (Distribute 10 points, max 5 per stat):</label>
-                            <div class="points-remaining" id="super-points">Points remaining: 10</div>
-                            
-                            <div class="stat-item">
-                                <label>Power: <span id="super-power-value">1</span></label>
-                                <input type="range" id="super-power" min="1" max="5" value="1" class="stat-slider" onchange="updateSuperStats()">
-                                <small>Strength and attack power</small>
+                        <div class="stage-header">
+                            <h4>SUPER Stage</h4>
+                            <div class="stage-requirement">Bond Level 3 Required</div>
+                        </div>
+                        <div class="compact-points-remaining" id="super-points">Points remaining: 10</div>
+
+                        <div class="stage-content">
+                            <div class="stage-stats">
+                                <div class="compact-stat-item">
+                                    <label>Power</label>
+                                    <div class="stat-value" id="super-power-value">1</div>
+                                    <input type="range" id="super-power" min="1" max="5" value="1" class="compact-stat-slider" onchange="updateSuperStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Heart</label>
+                                    <div class="stat-value" id="super-heart-value">1</div>
+                                    <input type="range" id="super-heart" min="1" max="5" value="1" class="compact-stat-slider" onchange="updateSuperStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Brains</label>
+                                    <div class="stat-value" id="super-brains-value">1</div>
+                                    <input type="range" id="super-brains" min="1" max="5" value="1" class="compact-stat-slider" onchange="updateSuperStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Agility</label>
+                                    <div class="stat-value" id="super-agility-value">1</div>
+                                    <input type="range" id="super-agility" min="1" max="5" value="1" class="compact-stat-slider" onchange="updateSuperStats()">
+                                </div>
                             </div>
-                            
-                            <div class="stat-item">
-                                <label>Heart: <span id="super-heart-value">1</span></label>
-                                <input type="range" id="super-heart" min="1" max="5" value="1" class="stat-slider" onchange="updateSuperStats()">
-                                <small>Vitality and endurance</small>
-                            </div>
-                            
-                            <div class="stat-item">
-                                <label>Brains: <span id="super-brains-value">1</span></label>
-                                <input type="range" id="super-brains" min="1" max="5" value="1" class="stat-slider" onchange="updateSuperStats()">
-                                <small>Intelligence and perception</small>
-                            </div>
-                            
-                            <div class="stat-item">
-                                <label>Agility: <span id="super-agility-value">1</span></label>
-                                <input type="range" id="super-agility" min="1" max="5" value="1" class="stat-slider" onchange="updateSuperStats()">
-                                <small>Speed and reflexes</small>
+
+                            <div class="stage-derived">
+                                <div class="compact-stat-item">
+                                    <label>HP</label>
+                                    <div class="stat-value" id="super-hp">12</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Damage</label>
+                                    <div class="stat-value" id="super-damage">3</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Dodge</label>
+                                    <div class="stat-value" id="super-dodge">1</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Initiative</label>
+                                    <div class="stat-value" id="super-initiative">1</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="stat-grid" id="super-derived">
-                            <div class="stat-item">
-                                <h4>HP</h4>
-                                <span id="super-hp">12</span>
+                        <!-- Super Qualities -->
+                        <div class="stage-qualities">
+                            <h5>Qualities (Max 2, Rank 1-3)</h5>
+                            <div class="form-group">
+                                <label>Quality 1:</label>
+                                <input type="text" id="super-quality-1" placeholder="e.g., Enhanced Senses">
+                                <label>Rank:</label>
+                                <input type="number" id="super-quality-1-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Damage</h4>
-                                <span id="super-damage">3</span>
+                            <div class="form-group">
+                                <label>Quality 2:</label>
+                                <input type="text" id="super-quality-2" placeholder="e.g., Thick Hide">
+                                <label>Rank:</label>
+                                <input type="number" id="super-quality-2-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Dodge</h4>
-                                <span id="super-dodge">1</span>
+                        </div>
+
+                        <div class="stage-signature-attack">
+                            <h5>Signature Attack</h5>
+                            <div class="form-group">
+                                <label>Attack Name:</label>
+                                <input type="text" id="super-attack-name" placeholder="e.g., Thunder Strike">
                             </div>
-                            <div class="stat-item">
-                                <h4>Initiative</h4>
-                                <span id="super-initiative">1</span>
+                            <div class="form-group">
+                                <label>Element:</label>
+                                <select id="super-attack-element">
+                                    <option value="">Select Element</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Earth">Earth</option>
+                                    <option value="Air">Air</option>
+                                    <option value="Lightning">Lightning</option>
+                                    <option value="Ice">Ice</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Metal">Metal</option>
+                                    <option value="Light">Light</option>
+                                    <option value="Dark">Dark</option>
+                                    <option value="Spirit">Spirit</option>
+                                    <option value="None">None</option>
+                                </select>
+                            </div>
+                            <div class="effects-grid">
+                                <label>Effects:</label>
+                                <div class="effect-input">
+                                    <input type="text" id="super-attack-effect-1" placeholder="e.g., Deal 3 Harm">
+                                </div>
+                                <div class="effect-input">
+                                    <input type="text" id="super-attack-effect-2" placeholder="e.g., Stun (1 round)">
+                                </div>
+                                <div class="effect-input">
+                                    <input type="text" id="super-attack-effect-3" placeholder="Additional effect">
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Ultra Stage -->
                     <div class="evolution-stage">
-                        <h4>ULTRA Stage</h4>
-                        <div class="form-group">
-                            <div class="points-remaining">Bond Level 6 Required</div>
-                            <label>Stats (Distribute 12 points, max 6 per stat):</label>
-                            <div class="points-remaining" id="ultra-points">Points remaining: 12</div>
-                            
-                            <div class="stat-item">
-                                <label>Power: <span id="ultra-power-value">1</span></label>
-                                <input type="range" id="ultra-power" min="1" max="6" value="1" class="stat-slider" onchange="updateUltraStats()">
-                                <small>Strength and attack power</small>
+                        <div class="stage-header">
+                            <h4>ULTRA Stage</h4>
+                            <div class="stage-requirement">Bond Level 6 Required</div>
+                        </div>
+                        <div class="compact-points-remaining" id="ultra-points">Points remaining: 12</div>
+
+                        <div class="stage-content">
+                            <div class="stage-stats">
+                                <div class="compact-stat-item">
+                                    <label>Power</label>
+                                    <div class="stat-value" id="ultra-power-value">1</div>
+                                    <input type="range" id="ultra-power" min="1" max="6" value="1" class="compact-stat-slider" onchange="updateUltraStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Heart</label>
+                                    <div class="stat-value" id="ultra-heart-value">1</div>
+                                    <input type="range" id="ultra-heart" min="1" max="6" value="1" class="compact-stat-slider" onchange="updateUltraStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Brains</label>
+                                    <div class="stat-value" id="ultra-brains-value">1</div>
+                                    <input type="range" id="ultra-brains" min="1" max="6" value="1" class="compact-stat-slider" onchange="updateUltraStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Agility</label>
+                                    <div class="stat-value" id="ultra-agility-value">1</div>
+                                    <input type="range" id="ultra-agility" min="1" max="6" value="1" class="compact-stat-slider" onchange="updateUltraStats()">
+                                </div>
                             </div>
-                            
-                            <div class="stat-item">
-                                <label>Heart: <span id="ultra-heart-value">1</span></label>
-                                <input type="range" id="ultra-heart" min="1" max="6" value="1" class="stat-slider" onchange="updateUltraStats()">
-                                <small>Vitality and endurance</small>
-                            </div>
-                            
-                            <div class="stat-item">
-                                <label>Brains: <span id="ultra-brains-value">1</span></label>
-                                <input type="range" id="ultra-brains" min="1" max="6" value="1" class="stat-slider" onchange="updateUltraStats()">
-                                <small>Intelligence and perception</small>
-                            </div>
-                            
-                            <div class="stat-item">
-                                <label>Agility: <span id="ultra-agility-value">1</span></label>
-                                <input type="range" id="ultra-agility" min="1" max="6" value="1" class="stat-slider" onchange="updateUltraStats()">
-                                <small>Speed and reflexes</small>
+
+                            <div class="stage-derived">
+                                <div class="compact-stat-item">
+                                    <label>HP</label>
+                                    <div class="stat-value" id="ultra-hp">17</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Damage</label>
+                                    <div class="stat-value" id="ultra-damage">4</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Dodge</label>
+                                    <div class="stat-value" id="ultra-dodge">1</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Initiative</label>
+                                    <div class="stat-value" id="ultra-initiative">1</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="stat-grid" id="ultra-derived">
-                            <div class="stat-item">
-                                <h4>HP</h4>
-                                <span id="ultra-hp">17</span>
+                        <!-- Ultra Qualities -->
+                        <div class="stage-qualities">
+                            <h5>Qualities (Max 2, Rank 1-3)</h5>
+                            <div class="form-group">
+                                <label>Quality 1:</label>
+                                <input type="text" id="ultra-quality-1" placeholder="e.g., Enhanced Senses">
+                                <label>Rank:</label>
+                                <input type="number" id="ultra-quality-1-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Damage</h4>
-                                <span id="ultra-damage">4</span>
+                            <div class="form-group">
+                                <label>Quality 2:</label>
+                                <input type="text" id="ultra-quality-2" placeholder="e.g., Thick Hide">
+                                <label>Rank:</label>
+                                <input type="number" id="ultra-quality-2-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Dodge</h4>
-                                <span id="ultra-dodge">1</span>
+                        </div>
+
+                        <div class="stage-signature-attack">
+                            <h5>Signature Attack</h5>
+                            <div class="form-group">
+                                <label>Attack Name:</label>
+                                <input type="text" id="ultra-attack-name" placeholder="e.g., Meteor Crash">
                             </div>
-                            <div class="stat-item">
-                                <h4>Initiative</h4>
-                                <span id="ultra-initiative">1</span>
+                            <div class="form-group">
+                                <label>Element:</label>
+                                <select id="ultra-attack-element">
+                                    <option value="">Select Element</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Earth">Earth</option>
+                                    <option value="Air">Air</option>
+                                    <option value="Lightning">Lightning</option>
+                                    <option value="Ice">Ice</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Metal">Metal</option>
+                                    <option value="Light">Light</option>
+                                    <option value="Dark">Dark</option>
+                                    <option value="Spirit">Spirit</option>
+                                    <option value="None">None</option>
+                                </select>
+                            </div>
+                            <div class="effects-grid">
+                                <label>Effects:</label>
+                                <div class="effect-input">
+                                    <input type="text" id="ultra-attack-effect-1" placeholder="e.g., Deal 4 Harm">
+                                </div>
+                                <div class="effect-input">
+                                    <input type="text" id="ultra-attack-effect-2" placeholder="e.g., Area effect (3x3)">
+                                </div>
+                                <div class="effect-input">
+                                    <input type="text" id="ultra-attack-effect-3" placeholder="Additional effect">
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Giga Stage -->
                     <div class="evolution-stage">
-                        <h4>GIGA Stage</h4>
-                        <div class="form-group">
-                            <div class="points-remaining">Bond Level 9 Required</div>
-                            <label>Stats (Distribute 14 points, max 7 per stat):</label>
-                            <div class="points-remaining" id="giga-points">Points remaining: 14</div>
-                            
-                            <div class="stat-item">
-                                <label>Power: <span id="giga-power-value">1</span></label>
-                                <input type="range" id="giga-power" min="1" max="7" value="1" class="stat-slider" onchange="updateGigaStats()">
-                                <small>Strength and attack power</small>
+                        <div class="stage-header">
+                            <h4>GIGA Stage</h4>
+                            <div class="stage-requirement">Bond Level 9 Required</div>
+                        </div>
+                        <div class="compact-points-remaining" id="giga-points">Points remaining: 14</div>
+
+                        <div class="stage-content">
+                            <div class="stage-stats">
+                                <div class="compact-stat-item">
+                                    <label>Power</label>
+                                    <div class="stat-value" id="giga-power-value">1</div>
+                                    <input type="range" id="giga-power" min="1" max="7" value="1" class="compact-stat-slider" onchange="updateGigaStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Heart</label>
+                                    <div class="stat-value" id="giga-heart-value">1</div>
+                                    <input type="range" id="giga-heart" min="1" max="7" value="1" class="compact-stat-slider" onchange="updateGigaStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Brains</label>
+                                    <div class="stat-value" id="giga-brains-value">1</div>
+                                    <input type="range" id="giga-brains" min="1" max="7" value="1" class="compact-stat-slider" onchange="updateGigaStats()">
+                                </div>
+
+                                <div class="compact-stat-item">
+                                    <label>Agility</label>
+                                    <div class="stat-value" id="giga-agility-value">1</div>
+                                    <input type="range" id="giga-agility" min="1" max="7" value="1" class="compact-stat-slider" onchange="updateGigaStats()">
+                                </div>
                             </div>
-                            
-                            <div class="stat-item">
-                                <label>Heart: <span id="giga-heart-value">1</span></label>
-                                <input type="range" id="giga-heart" min="1" max="7" value="1" class="stat-slider" onchange="updateGigaStats()">
-                                <small>Vitality and endurance</small>
-                            </div>
-                            
-                            <div class="stat-item">
-                                <label>Brains: <span id="giga-brains-value">1</span></label>
-                                <input type="range" id="giga-brains" min="1" max="7" value="1" class="stat-slider" onchange="updateGigaStats()">
-                                <small>Intelligence and perception</small>
-                            </div>
-                            
-                            <div class="stat-item">
-                                <label>Agility: <span id="giga-agility-value">1</span></label>
-                                <input type="range" id="giga-agility" min="1" max="7" value="1" class="stat-slider" onchange="updateGigaStats()">
-                                <small>Speed and reflexes</small>
+
+                            <div class="stage-derived">
+                                <div class="compact-stat-item">
+                                    <label>HP</label>
+                                    <div class="stat-value" id="giga-hp">22</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Damage</label>
+                                    <div class="stat-value" id="giga-damage">5</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Dodge</label>
+                                    <div class="stat-value" id="giga-dodge">1</div>
+                                </div>
+                                <div class="compact-stat-item">
+                                    <label>Initiative</label>
+                                    <div class="stat-value" id="giga-initiative">1</div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="stat-grid" id="giga-derived">
-                            <div class="stat-item">
-                                <h4>HP</h4>
-                                <span id="giga-hp">22</span>
+                        <!-- Giga Qualities -->
+                        <div class="stage-qualities">
+                            <h5>Qualities (Max 2, Rank 1-3)</h5>
+                            <div class="form-group">
+                                <label>Quality 1:</label>
+                                <input type="text" id="giga-quality-1" placeholder="e.g., Enhanced Senses">
+                                <label>Rank:</label>
+                                <input type="number" id="giga-quality-1-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Damage</h4>
-                                <span id="giga-damage">5</span>
+                            <div class="form-group">
+                                <label>Quality 2:</label>
+                                <input type="text" id="giga-quality-2" placeholder="e.g., Thick Hide">
+                                <label>Rank:</label>
+                                <input type="number" id="giga-quality-2-rank" min="1" max="3" value="1">
                             </div>
-                            <div class="stat-item">
-                                <h4>Dodge</h4>
-                                <span id="giga-dodge">1</span>
+                        </div>
+
+                        <div class="stage-signature-attack">
+                            <h5>Signature Attack</h5>
+                            <div class="form-group">
+                                <label>Attack Name:</label>
+                                <input type="text" id="giga-attack-name" placeholder="e.g., Cosmic Devastation">
                             </div>
-                            <div class="stat-item">
-                                <h4>Initiative</h4>
-                                <span id="giga-initiative">1</span>
+                            <div class="form-group">
+                                <label>Element:</label>
+                                <select id="giga-attack-element">
+                                    <option value="">Select Element</option>
+                                    <option value="Fire">Fire</option>
+                                    <option value="Water">Water</option>
+                                    <option value="Earth">Earth</option>
+                                    <option value="Air">Air</option>
+                                    <option value="Lightning">Lightning</option>
+                                    <option value="Ice">Ice</option>
+                                    <option value="Nature">Nature</option>
+                                    <option value="Metal">Metal</option>
+                                    <option value="Light">Light</option>
+                                    <option value="Dark">Dark</option>
+                                    <option value="Spirit">Spirit</option>
+                                    <option value="None">None</option>
+                                </select>
+                            </div>
+                            <div class="effects-grid">
+                                <label>Effects:</label>
+                                <div class="effect-input">
+                                    <input type="text" id="giga-attack-effect-1" placeholder="e.g., Deal 5 Harm">
+                                </div>
+                                <div class="effect-input">
+                                    <input type="text" id="giga-attack-effect-2" placeholder="e.g., Massive area (5x5)">
+                                </div>
+                                <div class="effect-input">
+                                    <input type="text" id="giga-attack-effect-3" placeholder="Additional effect">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1207,8 +1908,50 @@
     </div>
 
     <script>
+        // Game data from JSON files
+        let gameData = {
+            kidCharacters: [],
+            animonData: {},
+            gameRules: {}
+        };
+
+        // Load JSON data
+        async function loadGameData() {
+            try {
+                // Load kid characters data
+                const kidResponse = await fetch('./kid_characters.json');
+                gameData.kidCharacters = await kidResponse.json();
+
+                // Load animon data
+                const animonResponse = await fetch('./animon_data.json');
+                gameData.animonData = await animonResponse.json();
+
+                // Load game rules
+                const rulesResponse = await fetch('./game_rules.json');
+                gameData.gameRules = await rulesResponse.json();
+
+                // Initialize form with loaded data
+                initializeFormWithData();
+            } catch (error) {
+                console.warn('Could not load game data files:', error);
+                // Continue with hardcoded defaults if files not available
+                initializeFormWithData();
+            }
+        }
+
+        // Initialize form elements with data
+        function initializeFormWithData() {
+            populateKidTypeOptions();
+            populateAnimonOptions();
+            populateTalentSuggestions();
+            populateQualitySuggestions();
+        }
+
         // Character data storage
         let characterData = {
+            player: {
+                name: ''
+            },
             kid: {
                 name: '',
                 type: '',
@@ -1219,7 +1962,12 @@
                 specialItem: '',
                 stuff: '',
                 stamina: 4,
-                bondPoints: 3
+                bondPoints: 3,
+                bondLevel: 1,
+                xp: 0,
+                bondStrain: 0,
+                harm: { level1: '', level2: '', level3: '', shaken: false },
+                relationships: ''
             },
             animon: {
                 name: '',
@@ -1231,45 +1979,469 @@
                     hp: 8,
                     damage: 2,
                     dodge: 1,
-                    initiative: 1
+                    initiative: 1,
+                    qualities: [{ name: '', rank: 1 }, { name: '', rank: 1 }],
+                    signatureAttack: { name: '', element: '', effects: [] }
                 },
                 fledgling: {
                     stats: { power: 1, heart: 1, brains: 1, agility: 1 },
                     hp: 3,
                     damage: 1,
                     dodge: 1,
-                    initiative: 1
+                    initiative: 1,
+                    qualities: [{ name: '', rank: 1 }, { name: '', rank: 1 }]
                 },
                 super: {
                     stats: { power: 1, heart: 1, brains: 1, agility: 1 },
                     hp: 12,
                     damage: 3,
                     dodge: 1,
-                    initiative: 1
+                    initiative: 1,
+                    qualities: [{ name: '', rank: 1 }, { name: '', rank: 1 }],
+                    signatureAttack: { name: '', element: '', effects: [] }
                 },
                 ultra: {
                     stats: { power: 1, heart: 1, brains: 1, agility: 1 },
                     hp: 17,
                     damage: 4,
                     dodge: 1,
-                    initiative: 1
+                    initiative: 1,
+                    qualities: [{ name: '', rank: 1 }, { name: '', rank: 1 }],
+                    signatureAttack: { name: '', element: '', effects: [] }
                 },
                 giga: {
                     stats: { power: 1, heart: 1, brains: 1, agility: 1 },
                     hp: 22,
                     damage: 5,
                     dodge: 1,
-                    initiative: 1
+                    initiative: 1,
+                    qualities: [{ name: '', rank: 1 }, { name: '', rank: 1 }],
+                    signatureAttack: { name: '', element: '', effects: [] }
                 },
                 signatureAttack: {
                     name: '',
                     element: '',
                     effect: '',
                     uses: 1
-                },
-                quality: ''
+                }
             }
         };
+
+        // Populate Kid Type options from JSON data
+        function populateKidTypeOptions() {
+            const kidTypeSelect = document.getElementById('kid-type');
+            if (!kidTypeSelect || !gameData.kidCharacters.length) return;
+
+            // Clear existing options except the first
+            kidTypeSelect.innerHTML = '<option value="">Choose a Kid Type</option>';
+
+            // Add options from JSON data
+            gameData.kidCharacters.forEach(kidType => {
+                const option = document.createElement('option');
+                option.value = kidType.name.toLowerCase().replace(/\s+/g, '-');
+                option.textContent = kidType.name;
+                option.dataset.description = kidType.description;
+                option.dataset.typeFeature = kidType.type_feature;
+                kidTypeSelect.appendChild(option);
+            });
+
+            // Add change event listener to auto-populate related fields
+            kidTypeSelect.addEventListener('change', handleKidTypeChange);
+        }
+
+        // Handle Kid Type selection
+        function handleKidTypeChange(event) {
+            const selectedValue = event.target.value;
+            const infoDiv = document.getElementById('kid-type-info');
+
+            if (!selectedValue) {
+                infoDiv.style.display = 'none';
+                return;
+            }
+
+            const kidData = gameData.kidCharacters.find(kid =>
+                kid.name.toLowerCase().replace(/\s+/g, '-') === selectedValue
+            );
+
+            if (kidData) {
+                // Display character information
+                document.getElementById('kid-type-title').textContent = kidData.name;
+                document.getElementById('kid-type-description').textContent = kidData.description;
+                document.getElementById('kid-type-feature').textContent = kidData.type_feature;
+
+                // Create clickable suggestion tags
+                createSuggestionTags('suggested-talents', kidData.talents, 'talent');
+                createSuggestionTags('suggested-flaws', kidData.flaws, 'flaw');
+                createSuggestionTags('suggested-desires', kidData.desires, 'desire');
+                createSuggestionTags('suggested-special-items', kidData.special_items, 'special-item');
+
+                infoDiv.style.display = 'block';
+
+                // Auto-populate talent suggestions
+                populateTalentOptions(kidData.talents);
+
+                // Auto-populate flaw suggestions
+                populateFlawOptions(kidData.flaws);
+
+                // Auto-populate desire suggestions
+                populateDesireOptions(kidData.desires);
+
+                // Auto-populate special item suggestions
+                populateSpecialItemOptions(kidData.special_items);
+
+                // Auto-populate stuff suggestions
+                populateStuffOptions(kidData.stuff);
+            }
+        }
+
+        // Create clickable suggestion tags
+        function createSuggestionTags(containerId, suggestions, fieldType) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            container.innerHTML = '';
+            suggestions.forEach(suggestion => {
+                const tag = document.createElement('span');
+                tag.className = 'suggestion-tag';
+                tag.textContent = suggestion;
+                tag.onclick = () => applySuggestion(suggestion, fieldType);
+                container.appendChild(tag);
+            });
+        }
+
+        // Apply suggestion to appropriate field
+        function applySuggestion(suggestion, fieldType) {
+            switch (fieldType) {
+                case 'talent':
+                    const talent1 = document.getElementById('talent1');
+                    const talent2 = document.getElementById('talent2');
+                    if (!talent1.value) {
+                        talent1.value = suggestion;
+                    } else if (!talent2.value) {
+                        talent2.value = suggestion;
+                    }
+                    break;
+                case 'flaw':
+                    document.getElementById('kid-flaw').value = suggestion;
+                    break;
+                case 'desire':
+                    document.getElementById('kid-desire').value = suggestion;
+                    break;
+                case 'special-item':
+                    document.getElementById('special-item').value = suggestion;
+                    break;
+            }
+        }
+
+        // Populate Animon options from JSON data
+        function populateAnimonOptions() {
+            if (!gameData.animonData.classifications) return;
+
+            // Populate classifications
+            const classificationSelect = document.getElementById('animon-classification');
+            if (classificationSelect) {
+                classificationSelect.innerHTML = '<option value="">Choose Classification</option>';
+                gameData.animonData.classifications.forEach(cls => {
+                    const option = document.createElement('option');
+                    option.value = cls.name.toLowerCase();
+                    option.textContent = cls.name;
+                    option.title = cls.description;
+                    classificationSelect.appendChild(option);
+                });
+
+                // Add event listener for classification info
+                classificationSelect.addEventListener('change', handleClassificationChange);
+            }
+
+            // Populate elements
+            const elementSelect = document.getElementById('animon-element');
+            if (elementSelect) {
+                elementSelect.innerHTML = '<option value="">Choose Element</option>';
+                gameData.animonData.elements.forEach(element => {
+                    const option = document.createElement('option');
+                    option.value = element.name.toLowerCase();
+                    option.textContent = element.name;
+
+                    // Add effectiveness info as title
+                    let effectiveness = '';
+                    if (element.strong_against.length) {
+                        effectiveness += `Strong vs: ${element.strong_against.join(', ')}`;
+                    }
+                    if (element.weak_against.length) {
+                        effectiveness += ` | Weak vs: ${element.weak_against.join(', ')}`;
+                    }
+                    option.title = effectiveness;
+
+                    elementSelect.appendChild(option);
+                });
+
+                // Add event listener for element info
+                elementSelect.addEventListener('change', handleElementChange);
+            }
+
+            // Populate natures
+            const natureSelect = document.getElementById('animon-nature');
+            if (natureSelect) {
+                natureSelect.innerHTML = '<option value="">Choose Nature</option>';
+                gameData.animonData.natures.forEach(nature => {
+                    const option = document.createElement('option');
+                    option.value = nature.name.toLowerCase();
+                    option.textContent = `${nature.name} (${nature.positive} but ${nature.negative})`;
+                    natureSelect.appendChild(option);
+                });
+
+                // Add event listener for nature info
+                natureSelect.addEventListener('change', handleNatureChange);
+            }
+
+            // Populate signature attack effects
+            populateSignatureAttackEffects();
+        }
+
+        // Handle Animon selection changes
+        function handleClassificationChange(event) {
+            const selectedValue = event.target.value;
+            const classificationInfo = document.getElementById('classification-info');
+            const animonInfo = document.getElementById('animon-info');
+
+            if (!selectedValue) {
+                classificationInfo.style.display = 'none';
+                updateAnimonInfoVisibility();
+                return;
+            }
+
+            const classData = gameData.animonData.classifications.find(cls =>
+                cls.name.toLowerCase() === selectedValue
+            );
+
+            if (classData) {
+                document.getElementById('classification-title').textContent = classData.name + ' Classification';
+                document.getElementById('classification-description').textContent = classData.description;
+                classificationInfo.style.display = 'block';
+                animonInfo.style.display = 'block';
+            }
+        }
+
+        function handleElementChange(event) {
+            const selectedValue = event.target.value;
+            const elementInfo = document.getElementById('element-info');
+            const animonInfo = document.getElementById('animon-info');
+
+            if (!selectedValue) {
+                elementInfo.style.display = 'none';
+                updateAnimonInfoVisibility();
+                return;
+            }
+
+            const elementData = gameData.animonData.elements.find(elem =>
+                elem.name.toLowerCase() === selectedValue
+            );
+
+            if (elementData) {
+                document.getElementById('element-title').textContent = elementData.name + ' Element';
+
+                const strongSpan = document.getElementById('element-strong');
+                const weakSpan = document.getElementById('element-weak');
+
+                strongSpan.textContent = elementData.strong_against.length ?
+                    `Strong vs: ${elementData.strong_against.join(', ')}` : '';
+                weakSpan.textContent = elementData.weak_against.length ?
+                    `Weak vs: ${elementData.weak_against.join(', ')}` : '';
+
+                elementInfo.style.display = 'block';
+                animonInfo.style.display = 'block';
+            }
+        }
+
+        function handleNatureChange(event) {
+            const selectedValue = event.target.value;
+            const natureInfo = document.getElementById('nature-info');
+            const animonInfo = document.getElementById('animon-info');
+
+            if (!selectedValue) {
+                natureInfo.style.display = 'none';
+                updateAnimonInfoVisibility();
+                return;
+            }
+
+            const natureData = gameData.animonData.natures.find(nature =>
+                nature.name.toLowerCase() === selectedValue
+            );
+
+            if (natureData) {
+                document.getElementById('nature-title').textContent = natureData.name + ' Nature';
+                document.getElementById('nature-description').textContent =
+                    `Positive trait: ${natureData.positive} | Negative trait: ${natureData.negative}`;
+                natureInfo.style.display = 'block';
+                animonInfo.style.display = 'block';
+            }
+        }
+
+        function updateAnimonInfoVisibility() {
+            const classificationInfo = document.getElementById('classification-info');
+            const elementInfo = document.getElementById('element-info');
+            const natureInfo = document.getElementById('nature-info');
+            const animonInfo = document.getElementById('animon-info');
+
+            const hasAnyInfo = classificationInfo.style.display !== 'none' ||
+                             elementInfo.style.display !== 'none' ||
+                             natureInfo.style.display !== 'none';
+
+            animonInfo.style.display = hasAnyInfo ? 'block' : 'none';
+        }
+
+        // Populate talent suggestions
+        function populateTalentOptions(talentList = []) {
+            // Add datalist for talent autocomplete
+            let talentDatalist = document.getElementById('talent-suggestions');
+            if (!talentDatalist) {
+                talentDatalist = document.createElement('datalist');
+                talentDatalist.id = 'talent-suggestions';
+                document.body.appendChild(talentDatalist);
+            }
+
+            // Clear existing options
+            talentDatalist.innerHTML = '';
+
+            // Add talents from selected kid type or general list
+            const talents = talentList.length ? talentList : getAllTalents();
+            talents.forEach(talent => {
+                const option = document.createElement('option');
+                option.value = talent;
+                talentDatalist.appendChild(option);
+            });
+
+            // Attach datalist to talent inputs
+            const talent1 = document.getElementById('talent1');
+            const talent2 = document.getElementById('talent2');
+            if (talent1) talent1.setAttribute('list', 'talent-suggestions');
+            if (talent2) talent2.setAttribute('list', 'talent-suggestions');
+        }
+
+        // Get all talents from all kid types
+        function getAllTalents() {
+            const allTalents = new Set();
+            gameData.kidCharacters.forEach(kid => {
+                kid.talents.forEach(talent => allTalents.add(talent));
+            });
+            return Array.from(allTalents).sort();
+        }
+
+        // Populate other suggestion lists
+        function populateFlawOptions(flaws = []) {
+            createSuggestionDatalist('flaw-suggestions', 'kid-flaw', flaws.length ? flaws : getAllFlaws());
+        }
+
+        function populateDesireOptions(desires = []) {
+            createSuggestionDatalist('desire-suggestions', 'kid-desire', desires.length ? desires : getAllDesires());
+        }
+
+        function populateSpecialItemOptions(items = []) {
+            createSuggestionDatalist('item-suggestions', 'special-item', items.length ? items : getAllSpecialItems());
+        }
+
+        function populateStuffOptions(stuff = []) {
+            createSuggestionDatalist('stuff-suggestions', 'kid-stuff', stuff.length ? stuff : getAllStuff());
+        }
+
+        // Helper function to create suggestion datalists
+        function createSuggestionDatalist(datalistId, inputId, options) {
+            let datalist = document.getElementById(datalistId);
+            if (!datalist) {
+                datalist = document.createElement('datalist');
+                datalist.id = datalistId;
+                document.body.appendChild(datalist);
+            }
+
+            datalist.innerHTML = '';
+            options.forEach(option => {
+                const optionElement = document.createElement('option');
+                optionElement.value = option;
+                datalist.appendChild(optionElement);
+            });
+
+            const input = document.getElementById(inputId);
+            if (input) input.setAttribute('list', datalistId);
+        }
+
+        // Get all options from all kid types
+        function getAllFlaws() {
+            const allFlaws = new Set();
+            gameData.kidCharacters.forEach(kid => {
+                kid.flaws.forEach(flaw => allFlaws.add(flaw));
+            });
+            return Array.from(allFlaws).sort();
+        }
+
+        function getAllDesires() {
+            const allDesires = new Set();
+            gameData.kidCharacters.forEach(kid => {
+                kid.desires.forEach(desire => allDesires.add(desire));
+            });
+            return Array.from(allDesires).sort();
+        }
+
+        function getAllSpecialItems() {
+            const allItems = new Set();
+            gameData.kidCharacters.forEach(kid => {
+                kid.special_items.forEach(item => allItems.add(item));
+            });
+            return Array.from(allItems).sort();
+        }
+
+        function getAllStuff() {
+            const allStuff = new Set();
+            gameData.kidCharacters.forEach(kid => {
+                kid.stuff.forEach(stuff => allStuff.add(stuff));
+            });
+            return Array.from(allStuff).sort();
+        }
+
+        // Populate signature attack effects
+        function populateSignatureAttackEffects() {
+            const effectSelect = document.getElementById('signature-effect');
+            if (!effectSelect || !gameData.animonData.signature_attack_effects) return;
+
+            effectSelect.innerHTML = '<option value="">Choose Effect</option>';
+            gameData.animonData.signature_attack_effects.forEach(effect => {
+                const option = document.createElement('option');
+                option.value = effect.name.toLowerCase().replace(/\s+/g, '-');
+                option.textContent = effect.name;
+                option.title = effect.description;
+                effectSelect.appendChild(option);
+            });
+        }
+
+        // Populate quality suggestions for evolution stages
+        function populateQualitySuggestions() {
+            if (!gameData.animonData.qualities) return;
+
+            // Create datalist for quality suggestions
+            let qualityDatalist = document.getElementById('quality-suggestions');
+            if (!qualityDatalist) {
+                qualityDatalist = document.createElement('datalist');
+                qualityDatalist.id = 'quality-suggestions';
+                document.body.appendChild(qualityDatalist);
+            }
+
+            qualityDatalist.innerHTML = '';
+            gameData.animonData.qualities.forEach(quality => {
+                const option = document.createElement('option');
+                option.value = quality.name;
+                option.dataset.description = quality.description;
+                option.dataset.category = quality.category;
+                qualityDatalist.appendChild(option);
+            });
+
+            // Attach to all quality input fields
+            const stages = ['fledgling', 'basic', 'super', 'ultra', 'giga'];
+            stages.forEach(stage => {
+                const quality1 = document.getElementById(`${stage}-quality-1`);
+                const quality2 = document.getElementById(`${stage}-quality-2`);
+                if (quality1) quality1.setAttribute('list', 'quality-suggestions');
+                if (quality2) quality2.setAttribute('list', 'quality-suggestions');
+            });
+        }
 
         // Tab switching functionality
         function showTab(tabName) {
@@ -1431,20 +2603,20 @@
             const heart = parseInt(document.getElementById('super-heart').value);
             const brains = parseInt(document.getElementById('super-brains').value);
             const agility = parseInt(document.getElementById('super-agility').value);
-            
+
             // Update display values
             document.getElementById('super-power-value').textContent = power;
             document.getElementById('super-heart-value').textContent = heart;
             document.getElementById('super-brains-value').textContent = brains;
             document.getElementById('super-agility-value').textContent = agility;
-            
+
             // Calculate points used (each stat starts at 1, so subtract 4)
             const pointsUsed = (power + heart + brains + agility) - 4;
             const pointsRemaining = 10 - pointsUsed;
-            
+
             const pointsDisplay = document.getElementById('super-points');
             pointsDisplay.textContent = `Points remaining: ${pointsRemaining}`;
-            
+
             if (pointsRemaining < 0) {
                 pointsDisplay.style.background = '#f8d7da';
                 pointsDisplay.style.color = '#721c24';
@@ -1455,18 +2627,18 @@
                 pointsDisplay.style.background = '#e7f3ff';
                 pointsDisplay.style.color = '#0066cc';
             }
-            
+
             // Calculate derived stats
             const hp = 8 + (4 * heart);
             const damage = 3 * power;
             const dodge = agility;
             const initiative = brains;
-            
+
             document.getElementById('super-hp').textContent = hp;
             document.getElementById('super-damage').textContent = damage;
             document.getElementById('super-dodge').textContent = dodge;
             document.getElementById('super-initiative').textContent = initiative;
-            
+
             // Update character data
             characterData.animon.super = {
                 stats: { power, heart, brains, agility },
@@ -1480,20 +2652,20 @@
             const heart = parseInt(document.getElementById('ultra-heart').value);
             const brains = parseInt(document.getElementById('ultra-brains').value);
             const agility = parseInt(document.getElementById('ultra-agility').value);
-            
+
             // Update display values
             document.getElementById('ultra-power-value').textContent = power;
             document.getElementById('ultra-heart-value').textContent = heart;
             document.getElementById('ultra-brains-value').textContent = brains;
             document.getElementById('ultra-agility-value').textContent = agility;
-            
+
             // Calculate points used (each stat starts at 1, so subtract 4)
             const pointsUsed = (power + heart + brains + agility) - 4;
             const pointsRemaining = 12 - pointsUsed;
-            
+
             const pointsDisplay = document.getElementById('ultra-points');
             pointsDisplay.textContent = `Points remaining: ${pointsRemaining}`;
-            
+
             if (pointsRemaining < 0) {
                 pointsDisplay.style.background = '#f8d7da';
                 pointsDisplay.style.color = '#721c24';
@@ -1504,18 +2676,18 @@
                 pointsDisplay.style.background = '#e7f3ff';
                 pointsDisplay.style.color = '#0066cc';
             }
-            
+
             // Calculate derived stats
             const hp = 12 + (5 * heart);
             const damage = 4 * power;
             const dodge = agility;
             const initiative = brains;
-            
+
             document.getElementById('ultra-hp').textContent = hp;
             document.getElementById('ultra-damage').textContent = damage;
             document.getElementById('ultra-dodge').textContent = dodge;
             document.getElementById('ultra-initiative').textContent = initiative;
-            
+
             // Update character data
             characterData.animon.ultra = {
                 stats: { power, heart, brains, agility },
@@ -1529,20 +2701,20 @@
             const heart = parseInt(document.getElementById('giga-heart').value);
             const brains = parseInt(document.getElementById('giga-brains').value);
             const agility = parseInt(document.getElementById('giga-agility').value);
-            
+
             // Update display values
             document.getElementById('giga-power-value').textContent = power;
             document.getElementById('giga-heart-value').textContent = heart;
             document.getElementById('giga-brains-value').textContent = brains;
             document.getElementById('giga-agility-value').textContent = agility;
-            
+
             // Calculate points used (each stat starts at 1, so subtract 4)
             const pointsUsed = (power + heart + brains + agility) - 4;
             const pointsRemaining = 14 - pointsUsed;
-            
+
             const pointsDisplay = document.getElementById('giga-points');
             pointsDisplay.textContent = `Points remaining: ${pointsRemaining}`;
-            
+
             if (pointsRemaining < 0) {
                 pointsDisplay.style.background = '#f8d7da';
                 pointsDisplay.style.color = '#721c24';
@@ -1553,18 +2725,18 @@
                 pointsDisplay.style.background = '#e7f3ff';
                 pointsDisplay.style.color = '#0066cc';
             }
-            
+
             // Calculate derived stats
             const hp = 16 + (6 * heart);
             const damage = 5 * power;
             const dodge = agility;
             const initiative = brains;
-            
+
             document.getElementById('giga-hp').textContent = hp;
             document.getElementById('giga-damage').textContent = damage;
             document.getElementById('giga-dodge').textContent = dodge;
             document.getElementById('giga-initiative').textContent = initiative;
-            
+
             // Update character data
             characterData.animon.giga = {
                 stats: { power, heart, brains, agility },
@@ -1581,6 +2753,11 @@
 
             summaryDiv.innerHTML = `
                 <div class="summary-section">
+                    <h3>👤 Player</h3>
+                    <p><strong>Player Name:</strong> ${characterData.player.name || 'Not set'}</p>
+                </div>
+
+                <div class="summary-section">
                     <h3>🧒 Kid Character</h3>
                     <p><strong>Name:</strong> ${characterData.kid.name || 'Not set'}</p>
                     <p><strong>Type:</strong> ${characterData.kid.type || 'Not set'}</p>
@@ -1589,8 +2766,29 @@
                     <p><strong>Flaw:</strong> ${characterData.kid.flaw || 'Not set'}</p>
                     <p><strong>Desire:</strong> ${characterData.kid.desire || 'Not set'}</p>
                     <p><strong>Special Item:</strong> ${characterData.kid.specialItem || 'Not set'}</p>
+                    <p><strong>Stuff:</strong> ${characterData.kid.stuff || 'Not set'}</p>
                     <p><strong>Stamina:</strong> ${characterData.kid.stamina}</p>
-                    <p><strong>Starting Bond Points:</strong> ${characterData.kid.bondPoints}</p>
+                </div>
+
+                <div class="summary-section">
+                    <h3>🔗 Bond & Experience</h3>
+                    <p><strong>Bond Level:</strong> ${characterData.kid.bondLevel}</p>
+                    <p><strong>XP:</strong> ${characterData.kid.xp}</p>
+                    <p><strong>Bond Points:</strong> ${characterData.kid.bondPoints}</p>
+                    <p><strong>Bond Strain:</strong> ${characterData.kid.bondStrain}</p>
+                </div>
+
+                <div class="summary-section">
+                    <h3>💔 Harm</h3>
+                    <p><strong>Level 1:</strong> ${characterData.kid.harm.level1 || 'None'}</p>
+                    <p><strong>Level 2:</strong> ${characterData.kid.harm.level2 || 'None'}</p>
+                    <p><strong>Level 3:</strong> ${characterData.kid.harm.level3 || 'None'}</p>
+                    <p><strong>Shaken:</strong> ${characterData.kid.harm.shaken ? 'Yes' : 'No'}</p>
+                </div>
+
+                <div class="summary-section">
+                    <h3>👥 Relationships</h3>
+                    <p>${characterData.kid.relationships || 'Not set'}</p>
                 </div>
 
                 <div class="summary-section">
@@ -1600,46 +2798,6 @@
                     <p><strong>Element:</strong> ${characterData.animon.element || 'Not set'}</p>
                     <p><strong>Nature:</strong> ${characterData.animon.nature || 'Not set'}</p>
                     <p><strong>Quality:</strong> ${characterData.animon.quality || 'Not set'} (Rank 1)</p>
-                </div>
-
-                <div class="summary-section">
-                    <h3>⭐ Basic Stage Stats</h3>
-                    <div class="stat-grid">
-                        <div class="stat-item">
-                            <h4>Power</h4>
-                            <p>${characterData.animon.basic.stats.power}</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>Heart</h4>
-                            <p>${characterData.animon.basic.stats.heart}</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>Brains</h4>
-                            <p>${characterData.animon.basic.stats.brains}</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>Agility</h4>
-                            <p>${characterData.animon.basic.stats.agility}</p>
-                        </div>
-                    </div>
-                    <div class="stat-grid">
-                        <div class="stat-item">
-                            <h4>HP</h4>
-                            <p>${characterData.animon.basic.hp}</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>Damage</h4>
-                            <p>${characterData.animon.basic.damage}</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>Dodge</h4>
-                            <p>${characterData.animon.basic.dodge}</p>
-                        </div>
-                        <div class="stat-item">
-                            <h4>Initiative</h4>
-                            <p>${characterData.animon.basic.initiative}</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="summary-section">
@@ -1680,6 +2838,64 @@
                             <p>${characterData.animon.fledgling.initiative}</p>
                         </div>
                     </div>
+                    <div class="qualities-display">
+                        <h4>Qualities</h4>
+                        <p><strong>Quality 1:</strong> ${characterData.animon.fledgling.qualities[0]?.name || 'Not set'} (Rank ${characterData.animon.fledgling.qualities[0]?.rank || 1})</p>
+                        <p><strong>Quality 2:</strong> ${characterData.animon.fledgling.qualities[1]?.name || 'Not set'} (Rank ${characterData.animon.fledgling.qualities[1]?.rank || 1})</p>
+                    </div>
+                </div>
+
+                <div class="summary-section">
+                    <h3>⭐ Basic Stage Stats</h3>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>Power</h4>
+                            <p>${characterData.animon.basic.stats.power}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Heart</h4>
+                            <p>${characterData.animon.basic.stats.heart}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Brains</h4>
+                            <p>${characterData.animon.basic.stats.brains}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Agility</h4>
+                            <p>${characterData.animon.basic.stats.agility}</p>
+                        </div>
+                    </div>
+                    <div class="stat-grid">
+                        <div class="stat-item">
+                            <h4>HP</h4>
+                            <p>${characterData.animon.basic.hp}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Damage</h4>
+                            <p>${characterData.animon.basic.damage}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Dodge</h4>
+                            <p>${characterData.animon.basic.dodge}</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>Initiative</h4>
+                            <p>${characterData.animon.basic.initiative}</p>
+                        </div>
+                    </div>
+                    <div class="qualities-display">
+                        <h4>Qualities</h4>
+                        <p><strong>Quality 1:</strong> ${characterData.animon.basic.qualities[0]?.name || 'Not set'} (Rank ${characterData.animon.basic.qualities[0]?.rank || 1})</p>
+                        <p><strong>Quality 2:</strong> ${characterData.animon.basic.qualities[1]?.name || 'Not set'} (Rank ${characterData.animon.basic.qualities[1]?.rank || 1})</p>
+                    </div>
+                    ${characterData.animon.basic.signatureAttack?.name ? `
+                    <div class="signature-attack-display">
+                        <h4>Signature Attack</h4>
+                        <p><strong>Name:</strong> ${characterData.animon.basic.signatureAttack.name}</p>
+                        <p><strong>Element:</strong> ${characterData.animon.basic.signatureAttack.element || 'None'}</p>
+                        <p><strong>Effects:</strong> ${characterData.animon.basic.signatureAttack.effects?.join(', ') || 'None'}</p>
+                    </div>
+                    ` : ''}
                 </div>
 
                 <div class="summary-section">
@@ -1720,6 +2936,19 @@
                             <p>${characterData.animon.super.initiative}</p>
                         </div>
                     </div>
+                    <div class="qualities-display">
+                        <h4>Qualities</h4>
+                        <p><strong>Quality 1:</strong> ${characterData.animon.super.qualities[0]?.name || 'Not set'} (Rank ${characterData.animon.super.qualities[0]?.rank || 1})</p>
+                        <p><strong>Quality 2:</strong> ${characterData.animon.super.qualities[1]?.name || 'Not set'} (Rank ${characterData.animon.super.qualities[1]?.rank || 1})</p>
+                    </div>
+                    ${characterData.animon.super.signatureAttack?.name ? `
+                    <div class="signature-attack-display">
+                        <h4>Signature Attack</h4>
+                        <p><strong>Name:</strong> ${characterData.animon.super.signatureAttack.name}</p>
+                        <p><strong>Element:</strong> ${characterData.animon.super.signatureAttack.element || 'None'}</p>
+                        <p><strong>Effects:</strong> ${characterData.animon.super.signatureAttack.effects?.join(', ') || 'None'}</p>
+                    </div>
+                    ` : ''}
                 </div>
 
                 <div class="summary-section">
@@ -1760,6 +2989,19 @@
                             <p>${characterData.animon.ultra.initiative}</p>
                         </div>
                     </div>
+                    <div class="qualities-display">
+                        <h4>Qualities</h4>
+                        <p><strong>Quality 1:</strong> ${characterData.animon.ultra.qualities[0]?.name || 'Not set'} (Rank ${characterData.animon.ultra.qualities[0]?.rank || 1})</p>
+                        <p><strong>Quality 2:</strong> ${characterData.animon.ultra.qualities[1]?.name || 'Not set'} (Rank ${characterData.animon.ultra.qualities[1]?.rank || 1})</p>
+                    </div>
+                    ${characterData.animon.ultra.signatureAttack?.name ? `
+                    <div class="signature-attack-display">
+                        <h4>Signature Attack</h4>
+                        <p><strong>Name:</strong> ${characterData.animon.ultra.signatureAttack.name}</p>
+                        <p><strong>Element:</strong> ${characterData.animon.ultra.signatureAttack.element || 'None'}</p>
+                        <p><strong>Effects:</strong> ${characterData.animon.ultra.signatureAttack.effects?.join(', ') || 'None'}</p>
+                    </div>
+                    ` : ''}
                 </div>
 
                 <div class="summary-section">
@@ -1800,6 +3042,19 @@
                             <p>${characterData.animon.giga.initiative}</p>
                         </div>
                     </div>
+                    <div class="qualities-display">
+                        <h4>Qualities</h4>
+                        <p><strong>Quality 1:</strong> ${characterData.animon.giga.qualities[0]?.name || 'Not set'} (Rank ${characterData.animon.giga.qualities[0]?.rank || 1})</p>
+                        <p><strong>Quality 2:</strong> ${characterData.animon.giga.qualities[1]?.name || 'Not set'} (Rank ${characterData.animon.giga.qualities[1]?.rank || 1})</p>
+                    </div>
+                    ${characterData.animon.giga.signatureAttack?.name ? `
+                    <div class="signature-attack-display">
+                        <h4>Signature Attack</h4>
+                        <p><strong>Name:</strong> ${characterData.animon.giga.signatureAttack.name}</p>
+                        <p><strong>Element:</strong> ${characterData.animon.giga.signatureAttack.element || 'None'}</p>
+                        <p><strong>Effects:</strong> ${characterData.animon.giga.signatureAttack.effects?.join(', ') || 'None'}</p>
+                    </div>
+                    ` : ''}
                 </div>
 
                 <div class="summary-section">
@@ -1815,6 +3070,9 @@
 
         // Collect form data
         function collectFormData() {
+            // Player data
+            characterData.player.name = document.getElementById('player-name').value;
+
             // Kid data
             characterData.kid.name = document.getElementById('kid-name').value;
             characterData.kid.type = document.getElementById('kid-type').value;
@@ -1827,14 +3085,58 @@
             characterData.kid.specialItem = document.getElementById('special-item').value;
             characterData.kid.stuff = document.getElementById('kid-stuff').value;
 
+            // Bond and experience data
+            characterData.kid.bondLevel = parseInt(document.getElementById('bond-level').value) || 1;
+            characterData.kid.xp = parseInt(document.getElementById('xp').value) || 0;
+            characterData.kid.bondPoints = parseInt(document.getElementById('bond-points').value) || 3;
+            characterData.kid.bondStrain = parseInt(document.getElementById('bond-strain').value) || 0;
+
+            // Harm data
+            characterData.kid.harm.level1 = document.getElementById('harm-1').value;
+            characterData.kid.harm.level2 = document.getElementById('harm-2').value;
+            characterData.kid.harm.level3 = document.getElementById('harm-3').value;
+            characterData.kid.harm.shaken = document.getElementById('shaken').checked;
+
+            // Relationships
+            characterData.kid.relationships = document.getElementById('relationships').value;
+
             // Animon data
             characterData.animon.name = document.getElementById('animon-name').value;
             characterData.animon.classification = document.getElementById('animon-classification').value;
             characterData.animon.element = document.getElementById('animon-element').value;
             characterData.animon.nature = document.getElementById('animon-nature').value;
-            characterData.animon.quality = document.getElementById('animon-quality').value;
 
-            // Signature attack
+            // Collect qualities for each stage
+            const stages = ['fledgling', 'basic', 'super', 'ultra', 'giga'];
+            stages.forEach(stage => {
+                if (characterData.animon[stage]) {
+                    characterData.animon[stage].qualities = [
+                        {
+                            name: document.getElementById(`${stage}-quality-1`).value,
+                            rank: parseInt(document.getElementById(`${stage}-quality-1-rank`).value) || 1
+                        },
+                        {
+                            name: document.getElementById(`${stage}-quality-2`).value,
+                            rank: parseInt(document.getElementById(`${stage}-quality-2-rank`).value) || 1
+                        }
+                    ];
+                    
+                    // Collect signature attacks for stages that have them (not fledgling)
+                    if (stage !== 'fledgling') {
+                        characterData.animon[stage].signatureAttack = {
+                            name: document.getElementById(`${stage}-attack-name`).value,
+                            element: document.getElementById(`${stage}-attack-element`).value,
+                            effects: [
+                                document.getElementById(`${stage}-attack-effect-1`).value,
+                                document.getElementById(`${stage}-attack-effect-2`).value,
+                                document.getElementById(`${stage}-attack-effect-3`).value
+                            ].filter(effect => effect.trim() !== '') // Remove empty effects
+                        };
+                    }
+                }
+            });
+
+            // Legacy signature attack (now for basic stage compatibility)
             characterData.animon.signatureAttack.name = document.getElementById('signature-name').value;
             characterData.animon.signatureAttack.element = document.getElementById('signature-element').value;
             characterData.animon.signatureAttack.effect = document.getElementById('signature-effect').value;
@@ -1883,6 +3185,9 @@
         function loadCharacterData(data) {
             characterData = data;
 
+            // Load Player data
+            document.getElementById('player-name').value = data.player?.name || '';
+
             // Load Kid data
             document.getElementById('kid-name').value = data.kid.name || '';
             document.getElementById('kid-type').value = data.kid.type || '';
@@ -1896,12 +3201,49 @@
             document.getElementById('special-item').value = data.kid.specialItem || '';
             document.getElementById('kid-stuff').value = data.kid.stuff || '';
 
+            // Load Bond and experience data
+            document.getElementById('bond-level').value = data.kid.bondLevel || 1;
+            document.getElementById('xp').value = data.kid.xp || 0;
+            document.getElementById('bond-points').value = data.kid.bondPoints || 3;
+            document.getElementById('bond-strain').value = data.kid.bondStrain || 0;
+
+            // Load Harm data
+            document.getElementById('harm-1').value = data.kid.harm?.level1 || '';
+            document.getElementById('harm-2').value = data.kid.harm?.level2 || '';
+            document.getElementById('harm-3').value = data.kid.harm?.level3 || '';
+            document.getElementById('shaken').checked = data.kid.harm?.shaken || false;
+
+            // Load Relationships
+            document.getElementById('relationships').value = data.kid.relationships || '';
+
             // Load Animon data
             document.getElementById('animon-name').value = data.animon.name || '';
             document.getElementById('animon-classification').value = data.animon.classification || '';
             document.getElementById('animon-element').value = data.animon.element || '';
             document.getElementById('animon-nature').value = data.animon.nature || '';
-            document.getElementById('animon-quality').value = data.animon.quality || '';
+
+            // Load Qualities for each stage
+            const stages = ['fledgling', 'basic', 'super', 'ultra', 'giga'];
+            stages.forEach(stage => {
+                if (data.animon[stage]?.qualities) {
+                    document.getElementById(`${stage}-quality-1`).value = data.animon[stage].qualities[0]?.name || '';
+                    document.getElementById(`${stage}-quality-1-rank`).value = data.animon[stage].qualities[0]?.rank || 1;
+                    document.getElementById(`${stage}-quality-2`).value = data.animon[stage].qualities[1]?.name || '';
+                    document.getElementById(`${stage}-quality-2-rank`).value = data.animon[stage].qualities[1]?.rank || 1;
+                }
+                
+                // Load signature attacks for stages that have them (not fledgling)
+                if (stage !== 'fledgling' && data.animon[stage]?.signatureAttack) {
+                    const attack = data.animon[stage].signatureAttack;
+                    document.getElementById(`${stage}-attack-name`).value = attack.name || '';
+                    document.getElementById(`${stage}-attack-element`).value = attack.element || '';
+                    if (attack.effects && attack.effects.length > 0) {
+                        document.getElementById(`${stage}-attack-effect-1`).value = attack.effects[0] || '';
+                        document.getElementById(`${stage}-attack-effect-2`).value = attack.effects[1] || '';
+                        document.getElementById(`${stage}-attack-effect-3`).value = attack.effects[2] || '';
+                    }
+                }
+            });
 
             // Load Basic stage stats
             document.getElementById('basic-power').value = data.animon.basic.stats.power;
@@ -1957,6 +3299,10 @@
 
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
+            // Load game data from JSON files
+            loadGameData();
+
+            // Initialize stats
             updateBasicStats();
             updateFledglingStats();
             updateSuperStats();

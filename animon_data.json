@@ -1,0 +1,596 @@
+{
+  "classifications": [
+    {
+      "name": "Dragon",
+      "description": "Draconic or dinosaur-like creatures with scales, horns, wings, and claws. Typically favor rocky, mountainous environments."
+    },
+    {
+      "name": "Beast",
+      "description": "Mammalian animal-like Animon with fur, paws, or prominent ears. Often found in fields and grasslands."
+    },
+    {
+      "name": "Avian",
+      "description": "Bird-like Animon with feathers, wings, beaks, or talons. Prefer skyward and aerial environments."
+    },
+    {
+      "name": "Insect",
+      "description": "Insectoid Animon resembling bugs or arachnids. Often have chitin, multiple legs, or wings. Thrive in forests and jungles."
+    },
+    {
+      "name": "Plant",
+      "description": "Floral or botanical Animon with vines, flowers, or roots. Found in lush, vegetation-rich environments."
+    },
+    {
+      "name": "Aquatic",
+      "description": "Fish-like or marine Animon with fins, scales, or thick fur. Adapted to lakes, rivers, and oceanic zones."
+    },
+    {
+      "name": "Celestial",
+      "description": "Radiant, angelic Animon with glowing features or holy relics. Dwell near shrines, temples, and sacred places."
+    },
+    {
+      "name": "Infernal",
+      "description": "Demonic or fiendish Animon with horns, dark wings, or flame-like features. Prefer wastelands or volcanic regions."
+    },
+    {
+      "name": "Machine",
+      "description": "Mechanical or cybernetic Animon with gears, plating, or full robotic forms. Common in cities and industrial zones."
+    },
+    {
+      "name": "Fairy",
+      "description": "Fey-inspired Animon like pixies, gnomes, or sylphs. Use illusions and magic. Live in enchanted, supernatural areas."
+    },
+    {
+      "name": "Nightmare",
+      "description": "Spooky or ghostly Animon like ghouls, goblins, or specters. Inhabit ruins, abandoned buildings, and haunted locales."
+    },
+    {
+      "name": "Unknown",
+      "description": "Animon that defy categorization. Often amorphous or bizarre. Their favored habitats vary greatly."
+    }
+  ],
+  "elements": [
+    {
+      "name": "Fire",
+      "strong_against": [
+        "Nature",
+        "Insect"
+      ],
+      "weak_against": [
+        "Water",
+        "Earth"
+      ]
+    },
+    {
+      "name": "Water",
+      "strong_against": [
+        "Fire",
+        "Earth"
+      ],
+      "weak_against": [
+        "Nature",
+        "Electric"
+      ]
+    },
+    {
+      "name": "Nature",
+      "strong_against": [
+        "Water",
+        "Earth"
+      ],
+      "weak_against": [
+        "Fire",
+        "Insect"
+      ]
+    },
+    {
+      "name": "Electric",
+      "strong_against": [
+        "Water",
+        "Flying"
+      ],
+      "weak_against": [
+        "Earth",
+        "Nature"
+      ]
+    },
+    {
+      "name": "Earth",
+      "strong_against": [
+        "Electric",
+        "Fire"
+      ],
+      "weak_against": [
+        "Water",
+        "Nature"
+      ]
+    },
+    {
+      "name": "Wind",
+      "strong_against": [
+        "Insect",
+        "Plant"
+      ],
+      "weak_against": [
+        "Electric",
+        "Dark"
+      ]
+    },
+    {
+      "name": "Light",
+      "strong_against": [
+        "Dark",
+        "Nightmare"
+      ],
+      "weak_against": [
+        "Mirage",
+        "Infernal"
+      ]
+    },
+    {
+      "name": "Dark",
+      "strong_against": [
+        "Light",
+        "Fairy"
+      ],
+      "weak_against": [
+        "Nature",
+        "Celestial"
+      ]
+    },
+    {
+      "name": "Mirage",
+      "strong_against": [
+        "Light",
+        "Brains-based foes"
+      ],
+      "weak_against": [
+        "Dark",
+        "Electric"
+      ]
+    },
+    {
+      "name": "Neutral",
+      "strong_against": [],
+      "weak_against": []
+    }
+  ],
+  "natures": [
+    {
+      "name": "Balanced",
+      "positive": "Fair",
+      "negative": "Indecisive"
+    },
+    {
+      "name": "Cautious",
+      "positive": "Careful",
+      "negative": "Fearful"
+    },
+    {
+      "name": "Headstrong",
+      "positive": "Brave",
+      "negative": "Stubborn"
+    },
+    {
+      "name": "Studious",
+      "positive": "Knowledgeable",
+      "negative": "Awkward"
+    },
+    {
+      "name": "Obedient",
+      "positive": "Attentive",
+      "negative": "Dependant"
+    },
+    {
+      "name": "Friendly",
+      "positive": "Kind",
+      "negative": "Gullible"
+    },
+    {
+      "name": "Lonely",
+      "positive": "Calm",
+      "negative": "Disconnected"
+    },
+    {
+      "name": "Eager",
+      "positive": "Confident",
+      "negative": "Overambitious"
+    },
+    {
+      "name": "Joyful",
+      "positive": "Merry",
+      "negative": "Foolish"
+    }
+  ],
+  "stats": [
+    {
+      "name": "Power",
+      "description": "Measures the Animon's raw strength and energy. Affects how much damage they deal."
+    },
+    {
+      "name": "Heart",
+      "description": "Represents vitality and endurance. Determines HP and resilience."
+    },
+    {
+      "name": "Brains",
+      "description": "Indicates intelligence, wit, and perception. Governs Initiative and Signature Attack usage."
+    },
+    {
+      "name": "Agility",
+      "description": "Reflects swiftness and reflexes. Used for Dodging attacks and reacting quickly."
+    }
+  ],
+  "signature_attack_effects": [
+    {
+      "name": "Block-Break",
+      "description": "Deal half damage and make the target Vulnerable (Setback on Dodge)."
+    },
+    {
+      "name": "Efficient",
+      "description": "First use each combat doesn\u2019t consume a use."
+    },
+    {
+      "name": "Energy Drain",
+      "description": "Heal HP equal to target\u2019s Level when dealing damage."
+    },
+    {
+      "name": "Explosive",
+      "description": "Deal Level damage to adjacent enemies when hitting the main target."
+    },
+    {
+      "name": "Heavy Strike",
+      "description": "Deal extra damage equal to 1 + Rank on a hit."
+    },
+    {
+      "name": "Misdirect",
+      "description": "Disorient target (Setback on Attack rolls) instead of damage."
+    },
+    {
+      "name": "Multi-Element",
+      "description": "Choose between multiple elements for the attack."
+    },
+    {
+      "name": "Multi-Hit",
+      "description": "Hit multiple enemies by spending extra uses (1 target per use)."
+    },
+    {
+      "name": "Poison Strike",
+      "description": "Poison the target to deal Power damage each turn."
+    },
+    {
+      "name": "Overcharge",
+      "description": "Spend extra uses to multiply damage, but become Incapacitated."
+    },
+    {
+      "name": "Power Transfer",
+      "description": "Buff nearby allies with Boost for 1 turn."
+    },
+    {
+      "name": "Quick Strike",
+      "description": "Gain Boost if target hasn\u2019t acted yet."
+    },
+    {
+      "name": "Sap",
+      "description": "Weaken target (half damage dealt) instead of damage."
+    },
+    {
+      "name": "Stunning Strike",
+      "description": "Stun the target to make them skip next turn."
+    },
+    {
+      "name": "Sure Strike",
+      "description": "On miss, still deal half damage."
+    }
+  ],
+  "qualities": [
+    {
+      "name": "Forcefield",
+      "description": "Create protective energy barriers to block attacks",
+      "category": "Defense",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Block 1 attack per battle",
+        "2": "Block 2 attacks per battle",
+        "3": "Block 3 attacks per battle or 1 area attack"
+      }
+    },
+    {
+      "name": "Rocket Launcher",
+      "description": "Launch explosive projectiles at enemies",
+      "category": "Attack",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Deal +1 damage to single target",
+        "2": "Deal +2 damage or hit adjacent enemy",
+        "3": "Deal +3 damage or hit all adjacent enemies"
+      }
+    },
+    {
+      "name": "Healing Touch",
+      "description": "Restore HP to self or allies through physical contact",
+      "category": "Support",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Heal 2 HP once per battle",
+        "2": "Heal 3 HP twice per battle",
+        "3": "Heal 4 HP three times per battle"
+      }
+    },
+    {
+      "name": "Danger Sense",
+      "description": "Detect threats and ambushes before they happen",
+      "category": "Utility",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Cannot be surprised in combat",
+        "2": "Gain +1 Initiative when danger is present",
+        "3": "Warn allies, granting party +1 Initiative"
+      }
+    },
+    {
+      "name": "Natural Armour",
+      "description": "Thick hide, scales, or shell provides natural protection",
+      "category": "Defense",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Reduce all damage by 1 (minimum 1)",
+        "2": "Reduce all damage by 2 (minimum 1)",
+        "3": "Reduce all damage by 3 (minimum 1)"
+      }
+    },
+    {
+      "name": "Flight",
+      "description": "Ability to fly and maneuver in three dimensions",
+      "category": "Movement",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Fly short distances, avoid ground hazards",
+        "2": "Sustained flight, +1 Dodge vs ground attacks",
+        "3": "Expert aerial combat, +2 Dodge vs ground attacks"
+      }
+    },
+    {
+      "name": "Telekinesis",
+      "description": "Move objects with mental power alone",
+      "category": "Utility",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Move small objects, manipulate simple mechanisms",
+        "2": "Move medium objects, disarm opponents",
+        "3": "Move large objects, throw multiple items as attacks"
+      }
+    },
+    {
+      "name": "Camouflage",
+      "description": "Blend into surroundings to avoid detection",
+      "category": "Stealth",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Hide in natural environments",
+        "2": "Hide in any environment, +1 to stealth",
+        "3": "Near-invisibility, +2 to stealth and first attack"
+      }
+    },
+    {
+      "name": "Teleport",
+      "description": "Instantly move from one location to another",
+      "category": "Movement",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Short-range teleport once per battle",
+        "2": "Medium-range teleport twice per battle",
+        "3": "Long-range teleport three times per battle"
+      }
+    },
+    {
+      "name": "Counterattack",
+      "description": "Strike back immediately when attacked",
+      "category": "Attack",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Counter once per battle when hit",
+        "2": "Counter twice per battle when hit",
+        "3": "Counter every time hit, but at -1 damage"
+      }
+    },
+    {
+      "name": "Pack Tactics",
+      "description": "Fight more effectively alongside allies",
+      "category": "Support",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "+1 damage when ally is adjacent",
+        "2": "+1 damage and +1 accuracy when ally is adjacent",
+        "3": "+2 damage and +1 accuracy when any ally is nearby"
+      }
+    },
+    {
+      "name": "Thick Hide",
+      "description": "Tough skin provides resistance to physical attacks",
+      "category": "Defense",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Resist 1 point of physical damage",
+        "2": "Resist 2 points of physical damage",
+        "3": "Resist 3 points of physical damage"
+      }
+    },
+    {
+      "name": "Quick Reflexes",
+      "description": "React faster than normal in combat situations",
+      "category": "Speed",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "+1 Initiative in combat",
+        "2": "+2 Initiative and can act twice on first turn",
+        "3": "+3 Initiative and always act first"
+      }
+    },
+    {
+      "name": "Elemental Body",
+      "description": "Body is composed of or infused with elemental energy",
+      "category": "Special",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Immune to own element, +1 damage with element attacks",
+        "2": "Resist opposing elements, +2 damage with element attacks",
+        "3": "Absorb own element for healing, +3 damage with element attacks"
+      }
+    },
+    {
+      "name": "Burrowing",
+      "description": "Dig through earth and stone to move underground",
+      "category": "Movement",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Burrow through soft earth",
+        "2": "Burrow through hard earth and soft stone",
+        "3": "Burrow through any material, emerge for surprise attacks"
+      }
+    },
+    {
+      "name": "Intimidating Presence",
+      "description": "Natural aura that frightens and unnerves enemies",
+      "category": "Mental",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Weak enemies may flee or hesitate",
+        "2": "Enemies take -1 to attack rolls when first engaged",
+        "3": "All enemies take -1 to attack rolls throughout combat"
+      }
+    },
+    {
+      "name": "Regeneration",
+      "description": "Rapidly heal wounds and recover from damage",
+      "category": "Healing",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Heal 1 HP at start of each turn",
+        "2": "Heal 2 HP at start of each turn",
+        "3": "Heal 3 HP at start of each turn, regrow lost limbs"
+      }
+    },
+    {
+      "name": "Energy Absorption",
+      "description": "Absorb and redirect various forms of energy",
+      "category": "Special",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Absorb energy attacks for half damage",
+        "2": "Absorb energy attacks for no damage, store 1 charge",
+        "3": "Absorb energy attacks for healing, store 2 charges"
+      }
+    },
+    {
+      "name": "Phase Shift",
+      "description": "Temporarily become incorporeal to avoid attacks",
+      "category": "Defense",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Become incorporeal for 1 turn, once per battle",
+        "2": "Become incorporeal for 1 turn, twice per battle",
+        "3": "Become incorporeal for 2 turns, twice per battle"
+      }
+    },
+    {
+      "name": "Multi-Limb",
+      "description": "Additional arms, tentacles, or appendages for extra actions",
+      "category": "Utility",
+      "max_rank": 3,
+      "rank_effects": {
+        "1": "Make one extra simple action per turn",
+        "2": "Make one extra attack or complex action per turn",
+        "3": "Make two extra actions of any type per turn"
+      }
+    }
+  ],
+  "quality_categories": [
+    {
+      "name": "Attack",
+      "description": "Offensive abilities that enhance combat damage or provide new attack options",
+      "color": "#EF4444"
+    },
+    {
+      "name": "Defense", 
+      "description": "Protective abilities that reduce damage or provide defensive options",
+      "color": "#3B82F6"
+    },
+    {
+      "name": "Support",
+      "description": "Abilities that help allies or provide team benefits",
+      "color": "#10B981"
+    },
+    {
+      "name": "Movement",
+      "description": "Abilities that enhance mobility and positioning",
+      "color": "#F59E0B"
+    },
+    {
+      "name": "Utility",
+      "description": "Versatile abilities that provide various practical benefits",
+      "color": "#8B5CF6"
+    },
+    {
+      "name": "Stealth",
+      "description": "Abilities focused on hiding, sneaking, and avoiding detection",
+      "color": "#6B7280"
+    },
+    {
+      "name": "Mental",
+      "description": "Abilities that affect minds, emotions, or psychological states",
+      "color": "#EC4899"
+    },
+    {
+      "name": "Healing",
+      "description": "Abilities that restore HP or cure negative conditions",
+      "color": "#14B8A6"
+    },
+    {
+      "name": "Special",
+      "description": "Unique abilities that don't fit other categories",
+      "color": "#F97316"
+    },
+    {
+      "name": "Speed",
+      "description": "Abilities that enhance reaction time and action speed",
+      "color": "#84CC16"
+    }
+  ],
+  "evolution_stages": [
+    {
+      "name": "Fledgling",
+      "hp_formula": "3 \u00d7 Heart",
+      "damage_formula": "1 \u00d7 Power",
+      "dodge_formula": "Agility",
+      "initiative_formula": "Brains"
+    },
+    {
+      "name": "Basic",
+      "hp_formula": "5 + (3 \u00d7 Heart)",
+      "damage_formula": "2 \u00d7 Power",
+      "dodge_formula": "Agility",
+      "initiative_formula": "Brains"
+    },
+    {
+      "name": "Super",
+      "hp_formula": "GM-defined, higher than Basic",
+      "damage_formula": "GM-defined, higher than Basic",
+      "dodge_formula": "Agility + Bonus",
+      "initiative_formula": "Brains + Bonus"
+    },
+    {
+      "name": "Ultra",
+      "hp_formula": "Narrative-based, greater than Super",
+      "damage_formula": "Enhanced; GM-defined",
+      "dodge_formula": "Agility + Bonus",
+      "initiative_formula": "Brains + Bonus"
+    },
+    {
+      "name": "Giga",
+      "hp_formula": "Maximum potential; narrative capstone",
+      "damage_formula": "Peak power level",
+      "dodge_formula": "Agility + Bonus",
+      "initiative_formula": "Brains + Bonus"
+    }
+  ]
+}

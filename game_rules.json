@@ -1,0 +1,127 @@
+{
+  "character_creation": [
+    {
+      "id": "trait-distribution-rule",
+      "title": "Kid Trait Distribution (4-3-2 Rule)",
+      "content": "Kid characters must assign exactly 4, 3, and 2 to their Body, Mind, and Spirit traits. This ensures balanced characters with clear strengths and weaknesses.",
+      "keywords": ["traits", "stats", "distribution", "4-3-2", "balance", "kid"],
+      "importance": "high",
+      "examples": [
+        "Body: 4, Mind: 3, Spirit: 2 (Physical character)",
+        "Body: 2, Mind: 4, Spirit: 3 (Intellectual character)",
+        "Body: 3, Mind: 2, Spirit: 4 (Charismatic character)"
+      ]
+    },
+    {
+      "id": "animon-stat-distribution",
+      "title": "Animon Stat Point Distribution",
+      "content": "Basic stage Animon get 8 points to distribute among Power, Heart, Brains, and Agility (max 4 per stat). Fledgling stage gets 4 points (max 3 per stat).",
+      "keywords": ["animon", "stats", "points", "basic", "fledgling", "distribution"],
+      "importance": "high",
+      "examples": [
+        "Basic: 8 points total, max 4 per stat",
+        "Fledgling: 4 points total, max 3 per stat"
+      ]
+    },
+    {
+      "id": "derived-stat-formulas",
+      "title": "Derived Stat Calculation Formulas",
+      "content": "HP = Heart × 3, Damage = Power + 1, Dodge = Agility + 10, Initiative = Agility. These formulas apply to all Animon evolution stages.",
+      "keywords": ["formulas", "hp", "damage", "dodge", "initiative", "calculation", "heart", "power", "agility"],
+      "importance": "medium",
+      "examples": [
+        "Heart 3 = 9 HP",
+        "Power 2 = 3 Damage",
+        "Agility 4 = 14 Dodge, 4 Initiative"
+      ]
+    }
+  ],
+  "combat": [
+    {
+      "id": "initiative-order",
+      "title": "Initiative and Turn Order",
+      "content": "Combat proceeds in initiative order, determined by each participant's Initiative stat (equal to Agility for Animon). Higher initiative acts first.",
+      "keywords": ["initiative", "turn order", "combat", "agility", "sequence"],
+      "importance": "high",
+      "examples": [
+        "Animon with Agility 4 has Initiative 4",
+        "Acts before Animon with Initiative 2"
+      ]
+    },
+    {
+      "id": "element-effectiveness",
+      "title": "Elemental Type Effectiveness",
+      "content": "Some elements are strong or weak against others. Fire beats Plant, Water beats Fire, Electric beats Water, Plant beats Earth, etc.",
+      "keywords": ["elements", "effectiveness", "type chart", "weakness", "strength", "fire", "water", "electric", "plant", "earth"],
+      "importance": "medium",
+      "examples": [
+        "Fire attacks deal extra damage to Plant types",
+        "Water attacks are super effective against Fire types",
+        "Electric attacks are strong against Water and Aerial types"
+      ]
+    },
+    {
+      "id": "signature-attacks",
+      "title": "Signature Attack Usage",
+      "content": "Each Animon can have one Signature Attack with uses equal to their Brains stat. These are powerful special moves that can turn the tide of battle.",
+      "keywords": ["signature attack", "brains", "uses", "special moves", "powerful"],
+      "importance": "medium",
+      "examples": [
+        "Brains 3 = 3 uses of Signature Attack per battle",
+        "Signature Attacks often have special effects"
+      ]
+    }
+  ],
+  "evolution": [
+    {
+      "id": "evolution-stages",
+      "title": "Animon Evolution Stages",
+      "content": "Animon evolve through five stages: Fledgling → Basic → Super → Ultra → Giga. Each stage unlocks new abilities and higher stat caps.",
+      "keywords": ["evolution", "stages", "fledgling", "basic", "super", "ultra", "giga", "progression"],
+      "importance": "high",
+      "examples": [
+        "Fledgling: Starting stage, 4 stat points",
+        "Basic: 8 stat points, Signature Attack unlocked",
+        "Super: Higher stat caps, new abilities"
+      ]
+    },
+    {
+      "id": "bond-system",
+      "title": "Kid-Animon Bond System",
+      "content": "The bond between Kid and Animon affects evolution and abilities. Higher bond levels unlock advanced evolution stages and special combo attacks.",
+      "keywords": ["bond", "relationship", "evolution", "bond points", "bond strain", "combo"],
+      "importance": "medium",
+      "examples": [
+        "Bond Level 1: Basic partnership",
+        "Bond Level 3: Unlocks Super evolution",
+        "High bond enables combo attacks"
+      ]
+    }
+  ],
+  "gameplay": [
+    {
+      "id": "stamina-system",
+      "title": "Kid Stamina and Exhaustion",
+      "content": "Kids start with 4 Stamina points. Stamina is spent on special actions and abilities. When Stamina reaches 0, the Kid becomes exhausted.",
+      "keywords": ["stamina", "exhaustion", "special actions", "abilities", "fatigue"],
+      "importance": "medium",
+      "examples": [
+        "Using special talents costs Stamina",
+        "Exhausted Kids have penalties to actions",
+        "Rest recovers Stamina"
+      ]
+    },
+    {
+      "id": "virtue-system",
+      "title": "Virtue and Moral Choices",
+      "content": "Each Kid has a core Virtue that guides their moral compass. Acting in accordance with your Virtue can provide bonuses, while acting against it may cause penalties.",
+      "keywords": ["virtue", "moral", "choices", "bonuses", "penalties", "character"],
+      "importance": "low",
+      "examples": [
+        "Courage virtue: Bonuses when facing danger",
+        "Kindness virtue: Bonuses when helping others",
+        "Acting against virtue may cause internal conflict"
+      ]
+    }
+  ]
+}
